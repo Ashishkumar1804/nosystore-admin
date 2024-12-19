@@ -1,0 +1,62 @@
+<form [formGroup]="warrantyForm" (ngSubmit)="onSubmit()">
+    <div class="warranty-container">
+      <mat-card class="warranty-photo-card">        
+        <mat-card-content>
+            <mat-form-field>
+              <mat-label>Name</mat-label>
+              <input formControlName="name" matInput />
+              <mat-error *ngIf="warrantyForm.get('name')?.hasError('required')">
+                Name is required.
+              </mat-error>
+            </mat-form-field>
+        </mat-card-content>
+
+        <mat-card-content>
+            <mat-form-field>
+              <mat-label>Price</mat-label>
+              <input formControlName="price" matInput type="number"/>
+              <mat-error *ngIf="warrantyForm.get('price')?.hasError('required')">
+                Price is required.
+              </mat-error>
+            </mat-form-field>
+        </mat-card-content>
+
+        <mat-card-content>
+            <mat-form-field>
+              <mat-label>year</mat-label>
+              <input formControlName="year" matInput  type="number"/>
+              <mat-error *ngIf="warrantyForm.get('year')?.hasError('required')">
+                Year is required.
+              </mat-error>
+            </mat-form-field>
+        </mat-card-content>
+
+        <div class="input-detail">
+            <label
+              >Description*
+            </label>
+            
+            <div class="error-input">
+              <quill-editor
+                [styles]="{ height: '150px' }"
+                formControlName="description"
+              >
+              </quill-editor>
+              <mat-error *ngIf="warrantyForm.get('description')?.hasError('required')">
+                Description is required.
+              </mat-error>
+              <!-- <small
+                class="txt-danger"
+                *ngIf="submitted && warrantyForm.controls['description'].errors"
+              >
+              </small> -->
+            </div>
+            <span class="empty"></span>
+          </div>  
+        <mat-card-actions class="actions">
+          <button mat-raised-button class="custom-button">Save</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </form>
+  

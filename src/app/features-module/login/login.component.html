@@ -1,0 +1,50 @@
+<section class="loginWrapper">
+  <div class="loginForm">
+    <div class="textCenter headingWrap">
+      <h1 class="loginHeading">Welcome To NosyStore Admin</h1>
+      <p class="text">Enter your credentials to continue</p>
+    </div>
+    <div class="formContainer">
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="formRow">
+          <label class="label" for="email">Email</label>
+          <input type="text" placeholder="Email" formControlName="email" />
+          <div *ngIf="submitted && f['email'].errors" class="text-danger">
+            <div *ngIf="f['email'].errors['required']">Email is required!</div>
+            <div *ngIf="f['email'].errors['email']">Please enter a valid email address!</div>
+          </div>
+        </div>
+
+        <div class="formRow">
+          <label class="label" for="password">Password</label>
+          <div class="position-relative">
+            <input
+              [type]="passwordVisible ? 'text' : 'password'"
+              placeholder="Password..."
+              formControlName="password"
+              class="hasEyeIcon"
+            />
+            <button
+              type="button"
+              class="eyeBtn"
+              (click)="togglePasswordVisibility()"
+            >
+              <i
+                [ngClass]="passwordVisible ? 'bi bi-eye-slash' : 'bi bi-eye'"
+              ></i>
+            </button>
+          </div>
+          <div *ngIf="submitted && f['password'].errors" class="text-danger">
+            <div *ngIf="f['password'].errors['required']">Password is required!</div>
+            <div *ngIf="f['password'].errors['minlength']">
+              Password must be at least 6 characters.
+            </div>
+          </div>
+          <span class="forgetPassword" [routerLink]="['/forget-password']">Forgot Password?</span>
+        </div>
+
+        <button class="primaryBtn loginBtn" type="submit">Sign In</button>
+      </form>
+    </div>
+  </div>
+</section>

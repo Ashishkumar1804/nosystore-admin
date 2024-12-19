@@ -1,0 +1,132 @@
+<!-- ======brand====== -->
+<!-- <div class="page-loader" *ngIf="isPageLoading">
+    <mat-spinner [strokeWidth]="5" color="accent"></mat-spinner>
+  </div> -->
+  <div class="brand-step">
+    <!-- <div class="brand-step" [style.display]="isPageLoading ? 'none' : 'block'"> -->
+    <h2>General Information</h2>
+    <div class="new">
+      <div class="select-button">
+        <form [formGroup]="brandForm">
+          <div class="input-detail">
+            <label
+              >Product Name*
+              <span
+                ><img
+                  src="../../../../assets/images/questionIcon.png"
+                  matTooltipClass="my-tooltip"
+                  matTooltip="Unique name of product"
+              /></span>
+            </label>
+            <div class="error-input">
+              <input
+                class="input-form"
+                formControlName="name"
+                (input)="onInputName($event, 'name')"
+                type="text"
+                placeholder="Enter Product Name"
+              />
+              <!-- <small
+                class="txt-danger"
+                *ngIf="submitted && brandForm.controls['name'].errors"
+              > -->
+
+              <small *ngIf="submitted && brandForm.controls['name'].hasError('required')" class="txt-danger">
+                Product Name is required.
+              </small>
+                <!-- {{ brandForm.controls["name"].errors | validate : "Name" }} -->
+              <!-- </small> -->
+  
+              <!-- *ngIf="submitted && brandForm.controls['name'].touched && brandForm.controls['name'].errors" -->
+            </div>
+            <span class="empty"></span>
+          </div>
+          <div class="input-detail">
+            <label
+              >Description*
+              <span
+                ><img
+                  src="../../../../assets/images/questionIcon.png"
+                  matTooltip="Description of product"
+                  matTooltipClass="my-tooltip"
+              /></span>
+            </label>
+            <!-- <textarea class="input-form"  name="" id="" cols="30" rows="5">Write here...</textarea> -->
+            <div class="error-input">
+              <quill-editor
+                [styles]="{ height: '150px' }"
+                formControlName="description"
+              >
+              </quill-editor>
+              <small *ngIf="submitted && brandForm.controls['description'].hasError('required')" class="txt-danger">
+                Description is required.
+              </small>
+            </div>
+            <span class="empty"></span>
+          </div>
+          <div class="input-detail">
+            <label
+              >Brand*
+              <span
+                ><img
+                  src="../../../../assets/images/questionIcon.png"
+                  matTooltip="Brand of product"
+                  matTooltipClass="my-tooltip" /></span
+            ></label>
+            <!-- <div style="display: flex;align-items: center;"> -->
+            <div class="error-input">
+              <select formControlName="brand">
+                <option *ngIf="!selectedBrand">Select Brand</option>
+                <option *ngFor="let b of brandData" [value]="b._id">
+                  {{ b.name | titlecase }}
+                </option>
+              </select>
+              <small *ngIf="submitted && brandForm.controls['brand'].hasError('required')" class="txt-danger">
+                Please select a Brand.
+              </small>
+            </div>
+  
+            <!-- <button class="add-new-btn" (click)="addBrand()">
+              <span>+</span>
+            </button> -->
+            <!-- </div> -->
+          </div>
+          <div class="input-detail">
+            <label
+              >In the Box*
+              <span
+                ><img
+                  src="../../../../assets/images/questionIcon.png"
+                  matTooltip="Description of product"
+                  matTooltipClass="my-tooltip"
+              /></span>
+            </label>
+            <!-- <textarea class="input-form"  name="" id="" cols="30" rows="5">Write here...</textarea> -->
+            <div class="error-input">
+              <quill-editor
+                [styles]="{ height: '150px' }"
+                formControlName="inTheBox"
+              >
+              </quill-editor>
+              <small *ngIf="submitted && brandForm.controls['inTheBox'].hasError('required')" class="txt-danger">
+                "In the Box" field is required.
+              </small>
+            </div>
+            <span class="empty"></span>
+          </div>
+          <div class="buttons">
+            <button class="submit-btn" *ngIf="!isLoading" (click)="save()">
+              Submit
+            </button>
+            <button class="submit-btn btn-loader" *ngIf="isLoading">
+              Submitting
+              <mat-spinner [diameter]="25" color="accent"> </mat-spinner>
+            </button>
+          </div>
+        </form>
+        <!-- ====form section====== -->
+      </div>
+    </div>
+  </div>
+  <!-- ======brand====== -->
+  

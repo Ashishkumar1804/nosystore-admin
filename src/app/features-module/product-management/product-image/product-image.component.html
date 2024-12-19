@@ -1,0 +1,146 @@
+<!-- ======product images======= -->
+<div class="product-images">
+    <form [formGroup]="imagesForm">
+        <h2>Cover Image (*Required)</h2>
+        <div class="upload-image">
+            <span class="upload" *ngIf="!coverImageSrc"><img [src]="defaultImgSrc" alt=""></span>
+            <span class="upload" *ngIf="coverImageSrc"><img [src]="coverImageSrc" alt=""></span>
+            <button class="upload-btn" (click)="UploadFileInput.click()">Upload Photo</button>
+            <input type="file" #UploadFileInput id="fileUpload0" formControlName="coverPhoto"
+                (change)="onSelectImage($event,'coverView')" style="display:none" accept="image/*" />
+        </div>
+        <!-- <small class="txt-danger" *ngIf="imagesForm.controls['coverPhoto'].errors && imagesForm.controls['coverPhoto'].errors['required']">
+        {{imagesForm.controls['coverPhoto'].errors|validate:'Cover Image'}}
+      </small> -->
+        <h3>Product Images</h3>
+        <!-- ========product detail====== -->
+        <div class="product-detail">
+            <!-- <div class="pic-product">
+                <figure class="pic-uploaded">
+                    <img *ngIf="!previewImgSrc" [src]="defaultImgSrc" alt="">
+                    <img *ngIf="previewImgSrc" [src]="previewImgSrc" alt="">
+                    <button class="image-upload-btn" (click)="uploadPhoto()">Upload Photo</button>
+                </figure>
+            </div> -->
+
+            <div class="pic-product">
+            <figure class="pic-uploaded">
+                <img *ngIf="!previewImgSrc" [src]="defaultImgSrc" alt="">
+                <img *ngIf="previewImgSrc" [src]="previewImgSrc" alt="">
+                <button class="image-upload-btn" (click)="uploadPhoto(idType)">Upload Photo</button>
+              </figure>
+            </div>
+              
+            <div class="product-info">
+                <h4>{{currentType}}</h4>
+                <small class="blue-text"><img src="../../../../assets/images/info.png" alt=""> Amet minim mollit non deserunt
+                    ullamco
+                    est sit aliqua domini met. </small>
+                <ul class="bullet-info">
+                    <li>lor do amet sint. Velit officia consequat duis enim velit molli Exercitati
+                        on veniam consequat suntnostrud amet.</li>
+                    <li>lor do amet sint. Velit officia consequat duis enim velit.</li>
+                    <li>lor do amet sint. Velit officia consequat duis enim velit molli Exer
+                        citation veniam consequat sunt nostrudamet.</li>
+                    <li>lor do amet sint. Velit officia consequat duis enim velit.</li>
+                </ul>
+            </div>
+        </div>
+        <!-- ========product detail====== -->
+        <!-- ==========show images======= -->
+        <div class="show-images">
+            <!-- <div class="images" (click)="triggerToMain('photoView')"> -->
+            <div class="images" (click)="triggerToMain('photoView'); idType = 'photoView'" class="hasCrossIcon">
+                <span class="upload" *ngIf="!photoImageSrc"><img [src]="defaultImgSrc" alt=""></span>
+                <span class="upload" *ngIf="photoImageSrc"><img *ngIf="photoImageSrc" [src]="photoImageSrc"
+                        alt="" width="100px" ></span>
+                        <span class="crossICon" *ngIf="photoImageSrc" (click)="deletePhoto('photoImageSrc','photoImage','photo')"> 
+                            <img src="/assets/images/icons-cross.png" alt="">
+                        </span>
+
+                <p class="text-img"> Photo View</p>
+                <input type="file" #photoView id="fileUpload1" formControlName="photo"
+                    (change)="onSelectImage($event,'photoView')" style="display:none" accept="image/*" />
+            </div>
+            <div class="images" (click)="triggerToMain('frontView'); idType = 'frontView'" class="hasCrossIcon">
+            <!-- <div class="images" (click)="triggerToMain('frontView')"> -->
+                <span class="upload" *ngIf="!frontImageSrc"><img [src]="defaultImgSrc" alt=""></span>
+                <span class="upload" *ngIf="frontImageSrc"><img [src]="frontImageSrc" alt=""></span>
+                <span class="crossICon" *ngIf="frontImageSrc" (click)="deletePhoto('frontImageSrc','frontImage','frontPhoto')"> 
+                    <img src="/assets/images/icons-cross.png" alt="">
+                </span>
+                <p class="text-img">Front View</p>
+                <input type="file" #frontView id="fileUpload2" formControlName="frontPhoto"
+                    (change)="onSelectImage($event,'frontView')" style="display:none" accept="image/*" />
+            </div>
+
+            <div class="images" (click)="triggerToMain('backView'); idType = 'backView'" class="hasCrossIcon">
+            <!-- <div class="images" (click)="triggerToMain('backView')"> -->
+                <span class="upload" *ngIf="!backImageSrc"><img [src]="defaultImgSrc" alt=""></span>
+                <span class="upload" *ngIf="backImageSrc"><img [src]="backImageSrc" alt=""></span>
+                <span class="crossICon" *ngIf="backImageSrc" (click)="deletePhoto('backImageSrc','backImage','backPhoto')"> 
+                    <img src="/assets/images/icons-cross.png" alt="">
+                </span>
+                <p class="text-img">Back View</p>
+                <input type="file" #backView id="fileUpload3" formControlName="backPhoto"
+                    (change)="onSelectImage($event,'backView')" style="display:none" accept="image/*" />
+            </div>
+            <div class="images" (click)="triggerToMain('sideView'); idType = 'sideView'" class="hasCrossIcon">
+            <!-- <div class="images" (click)="triggerToMain('sideView')"> -->
+                <span class="upload" *ngIf="!sideImageSrc"><img [src]="defaultImgSrc" alt=""></span>
+                <span class="upload" *ngIf="sideImageSrc"><img [src]="sideImageSrc" alt=""></span>
+                <span class="crossICon" *ngIf="sideImageSrc" (click)="deletePhoto('sideImageSrc','sideImage','sidePhoto')"> 
+                    <img src="/assets/images/icons-cross.png" alt="">
+                </span>
+                <p class="text-img">Side View</p>
+                <input type="file" #sideView id="fileUpload4" formControlName="sidePhoto"
+                    (change)="onSelectImage($event,'sideView')" style="display:none" accept="image/*" />
+            </div>
+            <div class="images" (click)="triggerToMain('closeUpView'); idType = 'closeUpView'" class="hasCrossIcon">
+            <!-- <div class="images" (click)="triggerToMain('closeUpView')"> -->
+                <span class="upload" *ngIf="!closeUpImageSrc"><img [src]="defaultImgSrc" alt=""></span>
+                <span class="upload" *ngIf="closeUpImageSrc"><img [src]="closeUpImageSrc" alt=""></span>
+                <span class="crossICon" *ngIf="closeUpImageSrc" (click)="deletePhoto('closeUpImageSrc','closeUpImage','closeUpPhoto')"> 
+                    <img src="/assets/images/icons-cross.png" alt="">
+                </span>
+                <p class="text-img">Close up View</p>
+                <input type="file" #closeUpView id="fileUpload5" formControlName="closeUpPhoto"
+                    (change)="onSelectImage($event,'closeUpView')" style="display:none" accept="image/*" />
+            </div>
+            <div class="images" (click)="triggerToMain('exPhoto1View'); idType = 'exPhoto1View'" class="hasCrossIcon">
+            <!-- <div class="images" (click)="triggerToMain('exPhoto1View')"> -->
+                <span class="upload" *ngIf="!ex1ImageSrc"><img [src]="defaultImgSrc" alt=""></span>
+                <span class="upload" *ngIf="ex1ImageSrc"><img [src]="ex1ImageSrc" alt=""></span>
+                <span class="crossICon" *ngIf="ex1ImageSrc" (click)="deletePhoto('ex1ImageSrc','ex1Image','exPhoto1')"> 
+                    <img src="/assets/images/icons-cross.png" alt="">
+                </span>
+                <p class="text-img">Extra Photo 1</p>
+                <input type="file" #exPhoto1View id="fileUpload6" formControlName="exPhoto1"
+                    (change)="onSelectImage($event,'exPhoto1View')" style="display:none" accept="image/*" />
+            </div>
+            <div class="images" (click)="triggerToMain('exPhoto2View'); idType = 'exPhoto2View'" class="hasCrossIcon">
+            <!-- <div class="images" (click)="triggerToMain('exPhoto2View')"> -->
+                <span class="upload" *ngIf="!ex2ImageSrc"><img [src]="defaultImgSrc" alt=""></span>
+                <span class="upload" *ngIf="ex2ImageSrc"><img [src]="ex2ImageSrc" alt=""></span>
+                <span class="crossICon" *ngIf="ex2ImageSrc" (click)="deletePhoto('ex2ImageSrc','ex2Image','exPhoto2')"> 
+                    <img src="/assets/images/icons-cross.png" alt="">
+                </span>
+                <p class="text-img">Extra Photo 2</p>
+                <input type="file" #exPhoto2View id="fileUpload7" formControlName="exPhoto2"
+                    (change)="onSelectImage($event,'exPhoto2View')" style="display:none" accept="image/*" />
+            </div>
+
+        </div>
+        <div class="button">
+            <button *ngIf="!isSubmitting" class="submit-btn"  (click)="onSubmit()">Submit</button>
+            <button class="submit-btn btn-loader" *ngIf="isSubmitting">
+                Submitting
+                <mat-spinner [diameter]="25" color="accent"> </mat-spinner>
+            </button>
+        </div>
+        <!-- <div class="button" *ngIf="submit"><button class="submit-btn" style="display:flex" disabled>
+                <mat-spinner [strokeWidth]="2" [diameter]="20" color="accent"></mat-spinner>Loading...
+            </button>
+        </div> -->
+    </form>
+</div>

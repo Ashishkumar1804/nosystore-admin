@@ -1,0 +1,51 @@
+<div class="tab-pane" id="detail">
+  <!-- <h4>Subscription Detail</h4> -->
+  <table class="table table-th-block">
+    <tbody>
+      <tr>
+        <td class="active">planType:</td>
+        <td>{{ data?.data?.planType }}</td>
+      </tr>
+      <tr>
+        <td class="active">Members:</td>
+        <td>{{ data?.data?.members }}</td>
+      </tr>
+      <tr>
+        <td class="active">Validatiy:</td>
+        <td>{{ data?.data?.validity }}Days</td>
+      </tr>
+      <tr>
+        <td class="active">Plan Title:</td>
+        <td>
+          {{ data?.data?.planTitle == 1 ? "individual Member" : "Team Member" }}
+        </td>
+      </tr>
+      <tr>
+        <td class="active">Discount:</td>
+        <td>{{ data?.data?.discount }}</td>
+      </tr>
+      <tr>
+        <td class="active">Price:</td>
+        <td>{{ data?.data?.price }}</td>
+      </tr>
+      <tr>
+        <td class="active">Created Date:</td>
+        <td>
+          <a>{{ data?.data?.createdAt | date : "dd/MM/yyyy" }}</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="active">Features:</td>
+        <td>
+          <mat-chip-set aria-label="Fish selection">
+            <mat-chip
+              color="primary"
+              *ngFor="let item of data?.data?.features"
+              >{{ item }}</mat-chip
+            >
+          </mat-chip-set>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

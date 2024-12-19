@@ -1,0 +1,114 @@
+.rowReverse{
+    flex-direction: row-reverse;
+}
+// ======search Keyword
+.search-keyword {
+    h2 {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 23px;
+        color: #000000;
+    }
+
+    // ======form section
+    form {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+
+        .input-detail {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+
+            .error-input {
+                display: flex;
+                flex-direction: column;
+                width: calc(100% - 200px);
+                margin: 10px 0;
+
+
+                .input-form {
+                    background: #F4F4F4;
+                    box-shadow: inset 0px 5px 13px rgb(0 0 0 / 5%);
+                    border-radius: 5px;
+                    border: none;
+                    max-width: 362px;
+                    padding: 14px;
+
+                    &:focus-visible {
+                        outline: none;
+                    }
+                }
+
+                .txt-danger {
+                    text-align: left;
+                }
+            }
+
+
+            .empty {
+                width: 53px;
+                padding: 14px;
+            }
+
+            div {
+                .add-btn {
+                    background: #F4F4F4;
+                    box-shadow: inset 0px 5px 13px rgb(0 0 0 / 5%);
+                    border-radius: 5px;
+                    border: none;
+                    padding: 14px;
+                    width: 50px;
+                    margin: 0% 5px;
+
+                    span {
+                        font-size: 38px;
+                        color: grey;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                    }
+
+                }
+            }
+
+            label {
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 16px;
+                color: #262626;
+                width: 200px;
+                text-align: right;
+            }
+
+        }
+
+        .button-next {
+            width: calc(100% - 11%);
+            display: flex;
+            justify-content: flex-end;
+
+            .next-btn {
+                max-width: 178px;
+                width: 100%;
+                padding: 12px;
+                background: grey;
+                box-shadow: inset 0px 5px 13px rgb(0 0 0 / 5%);
+                border-radius: 5px;
+                border: none;
+                color: #FFFFFF;
+                font-size: 16px;
+                font-weight: 600;
+                margin: 20px 0;
+            }
+        }
+
+    }
+
+    // ======form section
+}
+
+// ======search Keyword

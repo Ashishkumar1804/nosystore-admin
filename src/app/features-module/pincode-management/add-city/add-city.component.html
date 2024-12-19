@@ -1,0 +1,18 @@
+<div id="confirm-dialog" class="dialog">
+    @if(data?.message){
+        <p>{{data.message}}</p>
+    }@else {
+        <p>Add City</p>
+    }
+
+    <!-- Input field with ngModel for two-way data binding -->
+    <input type="text" [(ngModel)]="city" class="addCityInput" placeholder="Enter city name">
+
+    <div class="right">
+        <!-- Pass true for OK button -->
+        <button id="confirm-ok-button" (click)="close(true)" autofocus>Ok</button>
+        &nbsp;
+        <!-- Pass false for Cancel button -->
+        <button id="confirm-cancel-button" (click)="close(false)">Cancel</button>
+    </div>
+</div>

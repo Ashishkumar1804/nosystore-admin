@@ -1,0 +1,197 @@
+// ======brand======
+.brand-step {
+    h2 {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 23px;
+        color: #000000;
+    }
+
+    .new {
+        text-align: center;
+
+        .select-button {
+
+            // =========form section
+            form {
+                width: 100%;
+                max-width: 800px;
+                margin: 0 auto;
+
+                .input-detail {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    margin: 20px 0;
+                    gap: 10px;
+
+                    .error-input {
+                        display: flex;
+                        flex-direction: column;
+                        width: calc(100% - 200px);
+                        max-width: 462px;
+
+                        .input-form {
+                            background: #F4F4F4;
+                            box-shadow: inset 0px 5px 13px rgb(0 0 0 / 5%);
+                            border-radius: 5px;
+                            border: none;
+                            max-width: 462px;
+                            padding: 14px;
+
+                            &:focus-visible {
+                                outline: none;
+                            }
+                        }
+
+                        quill-editor {
+                            height: auto;
+                            background: #F4F4F4;
+                            box-shadow: inset 0px 5px 13px rgb(0 0 0 / 5%);
+                            border-radius: 5px;
+                            max-width: 462px;
+                            border: none;
+                            padding: 15px;
+                            font-weight: 400;
+                            font-size: 14px;
+                            line-height: 16px;
+                            color: #6D6D6D;
+
+                            &:focus-visible {
+                                outline: none;
+                                box-shadow: none;
+                            }
+                        }
+
+                        select {
+                            max-width: 462px;
+                            padding: 16px;
+                            background-color: #F4F4F4;
+                            box-shadow: inset 0px 5px 13px rgb(0 0 0 / 5%);
+                            border-radius: 5px;
+                            font-weight: 400;
+                            font-size: 15px;
+                            line-height: 16px;
+                            color: #6D6D6D;
+                            border: none;
+                            appearance: none;
+                            background-image: url("../../../../assets/images/dropdownimg.png");
+                            background-repeat: no-repeat;
+                            background-position: right 1.75rem center;
+                            background-size: 12px 8px;
+
+                            &:focus-visible {
+                                box-shadow: none;
+                                outline: none;
+                            }
+
+                        }
+
+                        .txt-danger {
+                            text-align: left;
+                        }
+
+                    }
+
+                    .empty {
+                        width: 50px;
+                        padding: 9px;
+                    }
+
+                    label {
+                        width: 200px;
+                        font-weight: 500;
+                        font-size: 14px;
+                        line-height: 16px;
+                        color: #262626;
+                    }
+
+                }
+
+
+                .add-new-btn {
+                    background: #F4F4F4;
+                    box-shadow: inset 0px 5px 13px rgb(0 0 0 / 5%);
+                    border-radius: 5px;
+                    border: none;
+                    padding: 14px;
+                    width: 50px;
+                    margin-bottom: 22px;
+
+
+                    span {
+                        font-size: 38px;
+                        color: grey;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                    }
+
+                }
+
+            }
+
+            // =========form section
+
+        }
+
+
+        // =====submit btn
+        .buttons {
+            width: calc(100% - 16%);
+            display: flex;
+            justify-content: flex-end;
+
+            .submit-btn {
+                max-width: 178px;
+                width: 100%;
+                padding: 12px;
+                background:grey;
+                box-shadow: inset 0px 5px 13px rgb(0 0 0 / 5%);
+                border-radius: 5px;
+                border: none;
+                color: #FFFFFF;
+                font-size: 16px;
+                font-weight: 600;
+            }
+        }
+
+        // =====submit btn
+    }
+}
+
+// ======brand======
+// =======media querry
+@media screen and (min-width:768px) and (max-width:1180px) {
+    .brand-step {
+        .new {
+            .select-button {
+                .input-detail {
+                    flex-direction: column;
+
+                    .error-input {
+                        width: 100% !important;
+                    }
+
+                    label {
+                        width: 100% !important;
+                        text-align: left !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.txt-danger {
+    color: #d9534f;
+    font-size: 12px;
+  }
+  .error-input input.ng-invalid.ng-touched,
+  .error-input select.ng-invalid.ng-touched,
+  .error-input quill-editor.ng-invalid.ng-touched {
+    border: 1px solid #d9534f;
+  }
+
+// =======media querry

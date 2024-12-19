@@ -1,0 +1,105 @@
+.tabs-container {
+    margin: 20px;
+  }
+  
+  .plan-card {
+    margin-top: 20px;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .custom-button {
+    background-color: black;
+    color: white;
+  }
+  
+  .custom-button:hover {
+    background-color: #333;
+  }
+  
+  ::ng-deep .mat-mdc-card-header {
+    justify-content: flex-end;
+  }
+  
+  .example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+  }
+  
+  .example-margin {
+    margin: 10px;
+  }
+  
+  ::ng-deep .mat-icon {
+    font-size: 24px;
+    margin: 3px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .active-class {
+    border: 1px solid green;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: grey;
+  }
+  
+  .inactive-class {
+    border: 1px solid red;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: grey;
+  }
+  
+  ::ng-deep .mat-mdc-card-content {
+    margin-top: 10px;
+  }
+  
+  .wrap-cell {
+    max-width: 200px; /* Set a maximum width */
+  }
+  
+  ::ng-deep .mat-cell {
+    white-space: normal; /* Allow text to wrap */
+    overflow-wrap: break-word; /* Break words if necessary */
+  }
+  
+  ::ng-deep .mat-header-cell {
+    white-space: nowrap; /* Keep header text on one line */
+  }
+  .custom{
+    font-size: 11px;
+    color: #9c9c9f;
+    font-weight: 600;
+  }
+  
+  .red{
+    border: 1px solid red;
+    padding: 8px 6px;
+    border-radius: 5px;
+    color: grey;
+  }
+  .yellow{
+    border: 1px solid yellow;
+    padding: 8px 6px;
+    border-radius: 5px;
+    color: grey;
+  }
+  .blue{
+    border: 1px solid blueviolet;
+    padding: 8px 6px;
+    border-radius: 5px;
+    color: grey;
+  }
+.green{
+    border: 1px solid green;
+    padding: 8px 6px;
+    border-radius: 5px;
+    color: grey;
+}

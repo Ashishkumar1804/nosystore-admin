@@ -1,0 +1,23 @@
+<div class="page-loader" *ngIf="isPageLoading">
+    <!-- <mat-spinner [strokeWidth]="5" color="accent"></mat-spinner> -->
+</div>
+<div [style.display]="isPageLoading?'none':'block'">
+    <div class="searchBox">
+        <img src="assets/images/searchImg.png" alt="">
+        <input type="text" #search placeholder="Search Categories">
+    </div>
+    <div class="mega-menu">
+        <ng-container *ngFor="let list of categoriesList; let i = index">
+            <ul style="cursor:pointer" class="first-item">
+                <li *ngFor="let category of list" (click)="selectCategory(category, i)"
+                    [class.mega-link]="category.isSelected">
+                    <a>{{category?.name}}</a>
+                    <!-- <div class="indicate"></div> -->
+                    <!-- <mat-spinner *ngIf="category.isLoading" color="accent" [diameter]="25" strokeWidth="3"
+                        class="cat-loader"> </mat-spinner> -->
+                </li>
+            </ul>
+        </ng-container>
+    </div>
+
+</div>

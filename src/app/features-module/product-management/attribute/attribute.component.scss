@@ -1,0 +1,130 @@
+.specification {
+    h2 {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 23px;
+        text-transform: uppercase;
+        color: #000000;
+    }
+
+    .new {
+        text-align: center;
+
+        .select-button {
+
+            // =======form section
+            form {
+                width: 100%;
+                max-width: 600px;
+                margin: 0 auto;
+
+                .input-detail {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    gap: 10px;
+
+                    .error-input {
+                        display: flex;
+                        flex-direction: column;
+                        width: calc(100% - 200px);
+                        margin: 10px 0;
+
+                        select {
+                            max-width: 362px;
+                            padding: 16px;
+                            background-color: #F4F4F4;
+                            box-shadow: inset 0px 5px 13px rgb(0 0 0 / 5%);
+                            border-radius: 5px;
+                            font-weight: 400;
+                            font-size: 15px;
+                            line-height: 16px;
+                            color: #6D6D6D;
+                            border: none;
+                            appearance: none;
+                            background-image: url("../../../../assets/images/dropdownimg.png");
+                            background-repeat: no-repeat;
+                            background-position: right 1.75rem center;
+                            background-size: 12px 8px;
+
+                            &:focus-visible {
+                                box-shadow: none;
+                                outline: none;
+                            }
+
+                        }
+
+                        .txt-danger {
+                            text-align: left;
+                        }
+                    }
+
+                    .empty {
+                        width: 50px;
+                        padding: 9px;
+                    }
+
+                    label {
+                        width: 150px;
+                        font-weight: 500;
+                        font-size: 14px;
+                        line-height: 16px;
+                        color: #262626;
+                    }
+
+                }
+
+
+                .add-new-btn {
+                    background: #F4F4F4;
+                    box-shadow: inset 0px 5px 13px rgb(0 0 0 / 5%);
+                    border-radius: 5px;
+                    border: none;
+                    padding: 14px;
+                    margin-bottom: 20px;
+                    width: 50px;
+                    position: relative;
+                    top: 10px;
+                    right: 10px;
+
+                    span {
+                        font-size: 38px;
+                        color: grey;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                    }
+
+                }
+
+            }
+
+            // =======form section
+        }
+
+
+
+        .buttons {
+            width: calc(100% - 13%);
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .next-btn {
+            max-width: 178px;
+            width: 100%;
+            padding: 12px;
+            background: grey;
+            box-shadow: inset 0px 5px 13px rgb(0 0 0 / 5%);
+            border-radius: 5px;
+            border: none;
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: 600;
+        }
+    }
+}
+
+// ======specification section

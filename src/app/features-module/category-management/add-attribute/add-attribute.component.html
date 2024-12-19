@@ -1,0 +1,105 @@
+<div class="page-loader" *ngIf="isLoading">
+    <div class="loaderCustom"></div>
+</div>
+<ng-container *ngIf="!isLoading">
+    <div class="attributes-section">
+        <div class="heading-two">
+            <h2> {{attributeId?'Edit': 'Add'}} Attribute</h2>
+            <button mat-icon-button (click)="closeDialog()">
+                <mat-icon color="warn">cancel</mat-icon>
+            </button>
+        </div>
+        <form [formGroup]="attributeForm">
+            <!-- {{attributeForm.value|json}} -->
+            <div class="form-detail">
+                <div class="input-detail">
+                    <label>Category</label>
+                    <!-- <input class="input-form" type="text" formControlName="categoryId" [value]="categoryId"
+                    [readOnly]=true [hidden]=true>
+                    <input class="input-form" type="text" formControlName="categoryId" [value]="category?.name"
+                    [readOnly]=true> -->
+                    <select formControlName="categoryId">   
+                        <option [value]="categoryId">{{category?.name}}</option>
+                    </select>
+                </div>
+                <div class="input-detail">
+                    <label>Attribute name</label>
+                    <input class="input-form" type="text" formControlName="name" [value]="isAttributeColor?'color':''"
+                        placeholder="Enter attribute Name" [readOnly]="isAttributeColor">
+                        <span *ngIf="isColorAttributeName" style="color:red">attribute name already exist</span>
+                </div>
+                <div class="input-detail" [style.display]="attributeId?'none':'block'">
+                    <label>Attribute Type</label>
+                    <select formControlName="attributeType" #attrType>
+                        <!-- <option [value]="">File</option> -->
+                        <option [value]="3">General</option>
+                        <option [value]="1">Color</option>
+                    </select>
+                </div>
+            </div>
+            <div class="description input-detail">
+                <label for="">Description</label>
+                <textarea formControlName="description" cols="30" rows="5">Enter Description</textarea>
+            </div>
+            <div class="lower-part">
+                <div class="switch-items">
+                    <!-- <div class="switch-item" [style.display]="isAttributeColor?'none':'block'">
+                        <small>Attribute Properties Exist</small>
+                        <label class="switch">
+                            <input type="checkbox" formControlName="isProperties">
+                            <span class="slider round"></span>
+                        </label>
+                    </div> -->
+                    <!-- <div class="switch-item">
+                        <small>Add Access</small>
+                        <label class="switch">
+                            <input type="checkbox" formControlName="addAccess">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div class="switch-item" [style.display]="attributeId?'none':'block'">
+                        <small>Use for Variants</small>
+                        <label class="switch">
+                            <input type="checkbox" formControlName="useForVariants">
+                            <span class="slider round"></span>
+                        </label>
+                    </div> -->
+                </div>
+                <div class="input-plus" [style.display]="isAttributeColor?'none':'block'">
+                    <div formArrayName="properties" [style.display]="isPropertiesDisplay?'block':'none'">
+                        <ng-container *ngFor="let p of getFormArray('properties').controls, let i = index">
+                            <div class="input-detail" formGroupName="{{i}}">
+                                <label for="">Property Name</label>
+                                <div class="input-btn">
+                                    <input type="text" class="input-form" placeholder="Regular" formControlName="name">
+                                    <button class="add-new-btn"
+                                        (click)="addFields('properties')"><span>+</span></button>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+
+                    <div formArrayName="values" [style.display]="attributeId?'none':'block'">
+                        <ng-container *ngFor="let p of getFormArray('values').controls, let i = index">
+                            <div class="input-detail">
+                                <label for="">Values</label>
+                                <div class="input-btn">
+                                    <input type="text" class="input-form" placeholder="value" formControlName="{{i}}">
+                                    <button class="add-new-btn" (click)="addFields('values')"><span>+</span></button>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="buttons-attribute">
+                    <button (click)="cancel()" class="cancel">Cancel</button>
+                    <button *ngIf="!isSubmitting" type="submit" class="save-btn" (click)="submit()">Save</button>
+                    <button class="save-btn btn-loader" *ngIf="isSubmitting">
+                        Submitting
+                        <mat-spinner [diameter]="25" color="accent"> </mat-spinner>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</ng-container>

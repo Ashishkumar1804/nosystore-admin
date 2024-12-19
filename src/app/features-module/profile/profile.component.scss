@@ -1,0 +1,79 @@
+.profile-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin: 20px;
+}
+
+.profile-photo-card {
+  width: 30%;
+  height: 60%;
+}
+
+.profile-photo-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-photo {
+  position: relative;
+}
+
+.profile-photo .photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid grey;
+}
+
+.camera-icon {
+  position: absolute;
+  top: -6px;
+  right: 3px;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.custom-button {
+  background: var(--primaryColor);
+  color: white;
+}
+
+.custom-button:hover {
+  background-color: #333;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+mat-card {
+  margin: 2%;
+  text-align: left;
+}
+
+.mat-mdc-form-field {
+  width: 98%;
+  margin: 1%;
+}
+
+.mat-50 {
+  width: 48%;
+  margin: 1%;
+}
+
+.div-50 {
+  width: 48%;
+  margin: 1%;
+  display: inline;
+}
+
+button {
+  margin: 2px;
+}

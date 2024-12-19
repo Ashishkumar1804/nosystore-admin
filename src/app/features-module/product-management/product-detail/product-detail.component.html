@@ -1,0 +1,261 @@
+<!-- =======Product Detail======== -->
+<div class="page-loader" *ngIf="isLoading">
+    <mat-spinner [strokeWidth]="5" color="accent"></mat-spinner>
+  </div>
+  
+  <div class="product-detail" *ngIf="!isLoading">
+    <!-- =======Detail Upper Part======= -->
+    <div class="detail-upper-part">
+      <div class="left-img-part">
+        <span class="big-img">
+          <img [src]="baseUrl + photos[selectedImageIndex]" alt="Product Image" />
+        </span>
+        <mat-grid-list cols="3" >
+          <mat-grid-tile *ngFor="let image of photos; let i = index" [class.selected]="selectedImageIndex === i">
+            <img
+              [src]="baseUrl + image"
+              style="cursor: pointer;"
+              (click)="onPhotoChange(i)"
+              alt="Thumbnail"
+            />
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+  
+      <div class="right-text-part">
+        <mat-list>
+          <mat-list-item>
+            <h3 mat-line>{{ productDetails?.name | titlecase }}</h3>
+          </mat-list-item>
+          <mat-list-item>{{ productDetails?.categoryName | titlecase }}</mat-list-item>
+          <mat-list-item>{{ selectedVariant?.sku | uppercase }}</mat-list-item>
+          <!-- <mat-list-item>           
+            <span> ({{ productDetails?.ratingsTotal }})</span>
+          </mat-list-item> -->
+        </mat-list>
+  
+        <div class="price-section">
+          <h2>
+            {{ selectedVariant?.salePrice | currency: 'INR' }}
+            <span *ngIf="selectedVariant?.salePrice < selectedVariant?.regularPrice">
+              <del>{{ selectedVariant?.regularPrice | currency: 'INR' }}</del>
+            </span>
+          </h2>
+        </div>
+  
+        <!-- <div class="cashback-section">
+          <mat-grid-list cols="4" rowHeight="100px">
+            <mat-grid-tile>
+              <img src="assets/images/gold-member1.png" alt="Gold Cashback" />
+              <span>{{ selectedVariant?.goldCashbackAmount | currency: 'USD' }}</span>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <img src="assets/images/silver-member1.png" alt="Silver Cashback" />
+              <span>{{ selectedVariant?.sliverCashbackAmount | currency: 'USD' }}</span>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <img src="assets/images/bronze-member1.png" alt="Bronze Cashback" />
+              <span>{{ selectedVariant?.bronzeCashbackAmount | currency: 'USD' }}</span>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <img src="assets/images/wallet11.png" alt="Wallet Cashback" />
+              <span>{{ selectedVariant?.individualCashbackAmount | currency: 'USD' }}</span>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div> -->
+      </div>
+    </div>
+  
+    <!-- =======Detail Mid Part======= -->
+    <div class="detail-mid-part">
+      <mat-tab-group [(selectedIndex)]="selectedTab">
+        <mat-tab label="Description" class="description">
+          <div id="product-description" [innerHTML]="productDetails?.description"></div>
+        </mat-tab>
+        <mat-tab label="Additional Information">
+          <h2>Additional Information</h2>
+
+          <div class="outer-container">
+            <!-- Left Main Partition -->
+            <div class="partition-left">
+              <mat-card class="partition-card">
+                <div class="inner-container">
+                  <!-- Left Inner Sub-Partition -->
+                  <div class="inner-left">
+                    <span class="label">Brand Name</span>
+                  </div>
+                  <!-- Right Inner Sub-Partition -->
+                  <div class="inner-right">
+                    <span class="value"> {{productDetails?.brandId?.name}}</span>
+                  </div>
+                </div>
+
+                <div class="inner-container" *ngFor="let attr of selectedVariant?.attributes">
+                    <!-- Left Inner Sub-Partition -->
+                    <div class="inner-left" *ngIf="attr?.attribute?.name">
+                      <span class="label">{{attr?.attribute?.name}} </span>
+                    </div>
+                    <!-- Right Inner Sub-Partition -->
+                    <div class="inner-right"  *ngIf="attr?.attribute?.name">
+                      <span class="value"> {{attr?.value?.name}}</span>
+                    </div>
+                  </div>
+              </mat-card>
+            </div>
+          
+            <!-- Right Main Partition -->
+            <div class="partition-right">
+              <mat-card class="partition-card">
+                <div class="inner-container">
+                  <!-- Left Inner Sub-Partition -->
+                  <div class="inner-left">
+                    <span class="label">Manufacturing Details</span>
+                  </div>
+                  <!-- Right Inner Sub-Partition -->
+                  <div class="inner-right">
+                    <span class="value">{{productDetails?.manufacturerDetails}}</span>
+                  </div>
+                </div>
+                <div class="inner-container">
+                    <!-- Left Inner Sub-Partition -->
+                    <div class="inner-left">
+                      <span class="label">Importer Details</span>
+                    </div>
+                    <!-- Right Inner Sub-Partition -->
+                    <div class="inner-right">
+                      <span class="value">{{productDetails?.importerDetails}}</span>
+                    </div>
+                  </div>
+                  <div class="inner-container">
+                    <!-- Left Inner Sub-Partition -->
+                    <div class="inner-left">
+                      <span class="label">Packers Details</span>
+                    </div>
+                    <!-- Right Inner Sub-Partition -->
+                    <div class="inner-right">
+                      <span class="value">{{productDetails?.packerDetails}}</span>
+                    </div>
+                  </div>
+                  <div class="inner-container">
+                    <!-- Left Inner Sub-Partition -->
+                    <div class="inner-left">
+                      <span class="label">Country of Origin</span>
+                    </div>
+                    <!-- Right Inner Sub-Partition -->
+                    <div class="inner-right">
+                      <span class="value">{{productDetails?.countryOfOrigin}}</span>
+                    </div>
+                  </div>
+                  <!-- <div class="inner-container">
+                    <div class="inner-left">
+                      <span class="label">Shipping Provider</span>
+                    </div>
+                    <div class="inner-right">
+                      <span class="value">{{productDetails?.shippingProvider}}</span>
+                    </div>
+                  </div>
+                  <div class="inner-container">
+                    <div class="inner-left">
+                      <span class="label">Package Width</span>
+                    </div>
+                    <div class="inner-right">
+                      <span class="value">{{productDetails?.packageWidth}}</span>
+                    </div>
+                  </div>
+                  <div class="inner-container">
+                    <div class="inner-left">
+                      <span class="label">Package Weight</span>
+                    </div>
+                    
+                    <div class="inner-right">
+                      <span class="value">{{productDetails?.packageWeight}}</span>
+                    </div>
+                  </div>
+                  <div class="inner-container">
+                    
+                    <div class="inner-left">
+                      <span class="label">Package Length</span>
+                    </div>
+                    
+                    <div class="inner-right">
+                      <span class="value">{{productDetails?.packageLength}}</span>
+                    </div>
+                  </div>
+                  <div class="inner-container">
+                    
+                    <div class="inner-left">
+                      <span class="label">Package Height</span>
+                    </div>
+                    
+                    <div class="inner-right">
+                      <span class="value">{{productDetails?.packageHeight}}</span>
+                    </div>
+                  </div> -->
+              </mat-card>
+            </div>
+          </div>
+        
+        
+            
+        </mat-tab>
+        <!-- <mat-tab label="Reviews">
+          <app-product-review [productId]="productId"></app-product-review>
+        </mat-tab> -->
+      </mat-tab-group>
+    </div>
+  
+    <!-- =======Detail Lower Part======= -->
+    <div class="variant-info" *ngIf="selectedTab !== 3">
+      <h3>Variant Information</h3>
+      <!-- <mat-grid-list cols="3" rowHeight="300px">
+        <mat-grid-tile *ngFor="let variant of productVariants" [class.selected]="variant._id === selectedVariant._id">
+          <div class="card">
+            <img [src]="baseUrl + variant?.photo" alt="Variant Image" />
+            
+              <button mat-raised-button color="primary" (click)="edit(variant)">
+                <mat-icon>edit</mat-icon> Edit
+              </button>
+              <button mat-raised-button color="accent" (click)="view(variant)">
+                <mat-icon>visibility</mat-icon> View
+              </button>
+            
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list> -->
+      <div class="custom-row mt-2">
+        <div class="custom-card" *ngFor="let variant of productVariants" [ngStyle]="{'border': variant._id === selectedVariant._id ? '1px solid red' : '1px solid transparent'}">
+            <div class="topRow">
+                <figure>
+                    <img [src]="baseUrl + variant?.photo" alt="Variant Image">
+                </figure>
+                <div class="button-group">
+                    <button mat-raised-button color="primary" (click)="edit(variant)">
+                      <mat-icon>edit</mat-icon> Edit
+                    </button>
+                    <button mat-raised-button color="accent" (click)="view(variant)">
+                      <mat-icon>visibility</mat-icon> view
+                    </button>
+                  </div>
+            </div>
+            <!-- second-row -->
+             <div class="custom-rowCommon" *ngFor="let attr of variant?.attributes">
+                <span *ngIf="attr?.attribute?.useForVariants">{{attr?.attribute.name}} </span>
+                <span>{{attr?.value?.name}}</span>
+                <!-- <p>{{attr?.value.name}}
+                    <span *ngIf="attr?.property">
+                        ,{{attr?.property?.name}}
+                    </span>
+                </p> -->
+             </div>
+             <!-- third-row -->
+             <!-- <div class="custom-rowCommon">
+                <span>size</span>
+                <span>8 </span>
+             </div> -->
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  

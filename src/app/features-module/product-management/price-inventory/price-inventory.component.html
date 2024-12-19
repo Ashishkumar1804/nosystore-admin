@@ -1,0 +1,99 @@
+<!-- =====price inventory===== -->
+<div class="price-inventory">
+    <h2>Price Details & Inventory</h2>
+    <!-- =======form section====== -->
+    <form [formGroup]="priceForm">
+        <div class="input-detail">
+            <label>Regular Price* <span><img src="assets/images/questionIcon.png" matTooltipClass="my-tooltip"
+                        matTooltip="Regular price is the standard cost of a product"></span> </label>
+            <div class="error-input">
+                <input class="input-form" type="number" formControlName="regularPrice"
+                    placeholder="Enter Regular Price">
+                    <!-- <small *ngIf="submitted && priceForm.controls['regularPrice'].hasError('required')" class="txt-danger">
+                        Regular price is required.
+                    </small>
+                    <small *ngIf="submitted && priceForm.controls['regularPrice'].hasError('min')" class="txt-danger">
+                        Min value is 1.
+                    </small> -->
+                    <small *ngIf="submitted && priceForm.controls['regularPrice'].errors" class="txt-danger">
+                        Regular price is required and should be greater than sale price and 0.
+                      </small>
+                    
+            </div>
+        </div>
+        <div class="input-detail">
+            <label>Sale Price* <span>
+                    <img src="assets/images/questionIcon.png" matTooltipClass="my-tooltip"
+                        matTooltip="Sale price is a reduced cost from the regular price">
+                </span>
+            </label>
+            <div class="error-input">
+                <input class="input-form" type="number" min="0" oninput="this.value = Math.abs(this.value)"
+                    formControlName="salePrice" placeholder="Enter Sale Price">
+                
+                    <small *ngIf="submitted && priceForm.controls['salePrice'].errors" class="txt-danger">
+                        Sale price is required and should not be greater than regular price.
+                      </small>
+            </div>
+        </div>
+        <div class="input-detail">
+            <label>SKU* <span>
+                    <img src="assets/images/questionIcon.png" matTooltipClass="my-tooltip"
+                        matTooltip="Stock Keeping Unit, is used by retailers to identify and track its inventory, or stock. A SKU is a unique code consisting of letters and numbers that identify characteristics about each product, such as manufacturer, brand, style, color, and size">
+                </span>
+            </label>
+            <div class="error-input">
+                <input class="input-form" type="text" formControlName="sku" placeholder="Enter SKU">
+                <small *ngIf="submitted && priceForm.controls['sku'].errors" class="txt-danger">
+                    SKU is required.
+                  </small>
+            </div>
+        </div>
+        <div class="input-detail">
+            <label>Stock Quantity* <span><img src="assets/images/questionIcon.png" matTooltipClass="my-tooltip"
+                        matTooltip=" Stock quantity. If this is a variable product this value will be uStock quantity. If this is a variable product this value will be used to control stock for all variations, unless you define stock at variation level"></span>
+            </label>
+            <div class="error-input">
+                <input class="input-form" type="number" formControlName="stockQuantity"
+                    placeholder="Enter Stock Quantity" (input)="preventFraction('stockQuantity')">
+                    <small *ngIf="submitted && priceForm.controls['stockQuantity'].errors" class="txt-danger">
+                     Stock Quantity is required and should be greater than 0.
+                      </small>
+            </div>
+        </div>
+        <!-- <div class="input-detail">
+            <label>Sold Individual Stock* <span><img src="assets/images/questionIcon.png" matTooltipClass="my-tooltip"
+                        matTooltip="Enable this to only allow one of this item to be bought in a single order"></span>
+            </label>
+            <div class="error-input">
+                <input class="input-form" type="number" formControlName="soldIndividualStock"
+                    placeholder="Enter Sold Individual Stock" (input)="preventFraction('soldIndividualStock')">
+                    <small *ngIf="submitted && priceForm.controls['soldIndividualStock'].errors" class="txt-danger">
+                        Sold Individual Stock is required and should be greater than 0.
+                         </small>
+                                    </div>
+        </div> -->
+        <div class="input-detail">
+            <label>Low Threshold Stock*<span><img src="assets/images/questionIcon.png" matTooltipClass="my-tooltip"
+                        matTooltip="When product stock reaches this amount you will be notified by email. It is possible to define different values for each variation individually"></span>
+            </label>
+            <div class="error-input">
+                <input class="input-form" type="number" formControlName="lowThresholdStock"
+                    placeholder="Enter Low Throw Sold Stock" (input)="preventFraction('lowThresholdStock')">
+                    <small *ngIf="submitted && priceForm.controls['lowThresholdStock'].errors" class="txt-danger">
+                        Low Individual Stock is required and should be greater than 0.
+                         </small>
+            </div>
+        </div>
+        <div class="button-next">
+            <button class="next-btn" *ngIf="!isSubmitting" (click)="submit()" >Next</button>
+            <button class="next-btn btn-loader" *ngIf="isSubmitting">
+                Submitting
+                <mat-spinner [diameter]="25" color="accent"> </mat-spinner>
+            </button>
+        </div>
+
+    </form>
+    <!-- =======form section====== -->
+</div>
+<!-- =====price inventory===== -->

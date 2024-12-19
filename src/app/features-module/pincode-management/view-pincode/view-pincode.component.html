@@ -1,0 +1,66 @@
+<form [formGroup]="pincodeForm" (ngSubmit)="onSubmit()">
+    <div class="pincode-container">
+      <mat-card class="pincode-photo-card">        
+        <mat-card-content>
+          <mat-form-field>
+            <mat-label>Pincode</mat-label>
+            <input formControlName="pincode" matInput (input)="onPincodeChange('201014')" value="{{filteredSuggestions?.pincode}}" />
+            <mat-error *ngIf="pincodeForm.get('pincode')?.hasError('required')">
+              Pincode is required.
+            </mat-error>
+            <mat-error *ngIf="pincodeForm.get('pincode')?.hasError('pattern')">
+              Pincode must be a 6-digit number.
+            </mat-error>
+             <!-- Loader displayed below pincode input -->
+             
+            </mat-form-field>
+            <div *ngIf="isLoading" class="loader-container">
+              <mat-spinner diameter="20"></mat-spinner>
+            </div>
+          <!-- <mat-list  *ngIf="isLoading" class="loader-overlay">
+            <mat-spinner color="primary" diameter="50"></mat-spinner>
+          </mat-list > -->
+          <!-- Suggestions Dropdown -->
+          <mat-list *ngIf="filteredSuggestions.length > 0">
+            <mat-list-item *ngFor="let suggestion of filteredSuggestions" (click)="onSuggestionSelected(suggestion)">
+              {{ suggestion.Name }} - {{ suggestion.State }}, {{ suggestion.Country }}
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+
+        <mat-card-content>
+            <mat-form-field>
+              <mat-label>Country</mat-label>
+              <input formControlName="country" matInput  value="{{filteredSuggestions?.country}}" [readonly]=true/>
+              <mat-error *ngIf="pincodeForm.get('country')?.hasError('required')">
+                Country is required.
+              </mat-error>
+            </mat-form-field>
+        </mat-card-content>
+
+        <mat-card-content>
+          <mat-form-field>
+            <mat-label>State</mat-label>
+            <input formControlName="state" matInput value="{{filteredSuggestions?.state}}" [readonly]=true/>
+            <mat-error *ngIf="pincodeForm.get('state')?.hasError('required')">
+              State is required.
+            </mat-error>
+          </mat-form-field>
+        </mat-card-content>
+
+        <mat-card-content>
+          <mat-form-field>
+            <mat-label>City</mat-label>
+            <input formControlName="city" matInput value="{{filteredSuggestions?.city}}" [readonly]=true/>
+            <mat-error *ngIf="pincodeForm.get('city')?.hasError('required')">
+              City is required.
+            </mat-error>
+          </mat-form-field>
+        </mat-card-content>
+
+        <mat-card-actions class="actions">
+          <button mat-raised-button class="custom-button">Save</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+</form>

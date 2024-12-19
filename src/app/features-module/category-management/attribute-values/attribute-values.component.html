@@ -1,0 +1,146 @@
+<div class="content-box-start">
+    <mat-toolbar class="mat-elevation-z2 toolbar-table-header">
+        <mat-toolbar-row style="width: 100%; justify-content:space-between">
+            <div class="navigation-info">
+                <!-- <button mat-flat-button> -->
+                Attribute values
+                <!-- </button> -->
+            </div>
+            <div style="display: flex;justify-content: center">
+                <div class="search-bar-box">
+                    <!-- <app-search [searchPlaceholder]="'search value'" (onSearch)="onSearch($event)"></app-search> -->
+                </div>
+
+                <div class="buttons-table-header">
+                    <button mat-mini-fab color="accent" (click)="addAttributeValue()" *ngIf="!isAdding">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                    <button mat-mini-fab color="warn" (click)="addAttributeValue()" *ngIf="isAdding">
+                        <mat-icon>close</mat-icon>
+                    </button>
+
+                    <button mat-mini-fab color="accent" (click)="refresh()">
+                        <mat-icon>refresh</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div class="mat-elevation-z2 table-responsive" style="position: relative">
+        <div class="loader" *ngIf="isLoading">
+            <div class="loaderCustom"></div>
+        </div>
+       <ng-container *ngIf="!isAdding">
+        <div [style.display]="isLoading ? 'none' : 'block'">
+            <table mat-table [dataSource]="attributesValues" matSort matSortActive="name" matSortDirection="desc"
+                (matSortChange)="sortChange($event)">
+                <!-- columns start -->
+                <!-- serial number -->
+                <ng-container matColumnDef="No">
+                    <th mat-header-cell *matHeaderCellDef>Sl.No.</th>
+                    <td mat-cell *matCellDef="let row; let i = index">
+                        {{ (page - 1) * limit + (i + 1) }}.
+                    </td>
+                </ng-container>
+
+                <!-- Name  -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef >
+                        Name
+                    </th>
+                    <td mat-cell *matCellDef="let row; let i = index">
+                        <input type="text" [value]="row.name" class="row-input" [readonly]="!row?.isEdit"
+                            [class.rowEditShow]="row?.isEdit" #input>
+
+                            <button style="margin-left:3px;" (click)="updateAttributeValue(row, input.value)" mat-icon-button
+                            color="primary" *ngIf="row?.isEdit && !row.isLoading">
+                            <mat-icon>check_circle</mat-icon>
+
+                        </button>
+                        <mat-spinner *ngIf="row?.isLoading" color="accent" [diameter]="25" strokeWidth="3"
+                            class="cat-loader"> </mat-spinner>
+                    </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Action">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <span style="margin-left: 20px;">
+                            Action
+                        </span>
+                    </th>
+                    <td mat-cell *matCellDef="let row; let i=index">
+                        <button style="margin-left:3px;" (click)="editValue(row)" mat-icon-button color="accent"
+                            *ngIf="!row?.isEdit">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="columnToDisplay"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnToDisplay; let i = index" class="data-row"></tr>
+            </table>
+        </div>
+        <mat-paginator *ngIf="totalValues" [length]="totalValues" [pageSize]="limit" [pageSizeOptions]="[5, 10, 25, 50]"
+            (page)="pageChange($event)"></mat-paginator>
+            <div class="no-data" *ngIf="!totalValues">
+                <span>No Data Found</span>
+            </div>
+       </ng-container>
+
+       <ng-container *ngIf="isAdding">
+        <div [style.display]="isLoading ? 'none' : 'block'">
+            <table mat-table [dataSource]="addingAttributes" matSort matSortActive="name" matSortDirection="desc"
+                (matSortChange)="sortChange($event)">
+                <!-- columns start -->
+                <!-- serial number -->
+                <ng-container matColumnDef="No">
+                    <th mat-header-cell *matHeaderCellDef>Sl.No.</th>
+                    <td mat-cell *matCellDef="let row; let i = index">
+                        {{ (page - 1) * limit + (i + 1) }}.
+                    </td>
+                </ng-container>
+
+                <!-- Name  -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                        Name
+                    </th>
+                    <td mat-cell *matCellDef="let row; let i = index">
+                        <input type="text" [value]="row.name" class="row-input" [readonly]="!row?.isEdit"
+                            [class.rowEditShow]="row?.isEdit" #input>
+
+                            <button style="margin-left:3px;" (click)="updateAttributeValue(row, input.value)" mat-icon-button
+                            color="primary" *ngIf="row?.isEdit && !row.isLoading">
+                            <mat-icon>check_circle</mat-icon>
+
+                        </button>
+                        <mat-spinner *ngIf="row?.isLoading" color="accent" [diameter]="25" strokeWidth="3"
+                            class="cat-loader"> </mat-spinner>
+                    </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Action">
+                    <th mat-header-cell *matHeaderCellDef>
+                        <span style="margin-left: 20px;">
+                            Action
+                        </span>
+                    </th>
+                    <td mat-cell *matCellDef="let row; let i=index">
+                        <button style="margin-left:3px;" (click)="editValue(row)" mat-icon-button color="accent"
+                            *ngIf="!row?.isEdit">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="columnToDisplay"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnToDisplay; let i = index" class="data-row"></tr>
+            </table>
+        </div>
+        <mat-paginator *ngIf="totalValues" [length]="totalValues" [pageSize]="limit" [pageSizeOptions]="[5, 10, 25, 50]"
+            (page)="pageChange($event)"></mat-paginator>
+       </ng-container>
+    </div>
+</div>

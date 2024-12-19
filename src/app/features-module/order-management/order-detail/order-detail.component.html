@@ -1,0 +1,179 @@
+<!-- =======order-details======= -->
+<div class="page-loader" *ngIf="isLoading">
+    <div class="loaderCustom"></div>
+</div>
+<div class="orders" *ngIf="!isLoading">
+    <div class="order-details">
+        <div class="upper-head">
+            <h2> {{order?.orderNumber}} 
+            </h2>
+            <div class="buttons-wrap-custom">
+                <button *ngIf="label" class="view-btn">
+                    <a target="_blank" href="{{label}}">
+                        View label
+                    </a>
+                </button>
+
+                
+            </div>
+        </div>
+        <div class="lower-head">
+        </div>
+        <div class="details">
+            <h3>Order Detail</h3>
+
+            <!--Product Order details-->
+            <div class="main-detail">
+                <div class="custom-left">
+                    <ul>
+                        <ng-container *ngFor="let product of products" >
+                            <div class="product-container">
+                            <li>
+                                <figure>
+                                    <img [src]="baseUrl+product?.variant?.photo" height="80" width="100">
+                                    <a (click)="productDetails(product?.productId)"
+                                        style="cursor: pointer;">{{product?.product?.name}} ({{product?.quantity}} item)
+                                    </a>
+                                </figure>
+                                <p>{{product?.quantity}} x {{product?.price |currency: 'INR'}}</p>
+                            </li>
+
+                            <span class="custom-section-row">
+                            <span *ngIf="product.addOnsDetails.length>0">
+                                <p class="custom-heading" class="margin-left-Image custom-heading">Add Ons</p>
+                                <ng-container *ngFor="let addOns of product.addOnsDetails">
+                                    <li>
+                                        <figure>
+                                            <img [src]="baseUrl+addOns?.variant?.photo" height="80" width="100" class="margin-left-Image">
+                                            <a (click)="productDetails(addOns?.productId)"
+                                                style="cursor: pointer;">{{addOns?.product?.name}} ({{addOns?.quantity}} item)
+                                            </a>
+                                        </figure>
+                                        <p>{{addOns?.quantity}} x {{addOns?.price |currency: 'INR'}}</p>
+                                    </li>
+                                </ng-container>
+
+                            </span>
+
+                            <span *ngIf="product.warranty" >
+                                <p class="custom-heading"  class="margin-left-Image custom-heading">Warranty</p>
+                                <ng-container>
+                                    <li>
+                                        <figure  class="margin-left-Image">
+                                            <!-- <img [src]="baseUrl+warranty?.variant?.photo" height="100" width="150"> -->
+                                            <a (click)="productDetails(product.warranty?.productId)"
+                                                style="cursor: pointer;">{{product.warranty?.name}} ({{product.warranty?.quantity}} item)
+                                            </a>
+                                        </figure>
+                                        <p>{{product.warranty?.price |currency: 'INR'}}</p>
+                                    </li>
+                                </ng-container>
+
+                            </span>
+                        </span>
+                    </div>
+                        </ng-container>
+                        <li><span>Subtotal</span>
+                            <p>{{order?.subTotal | currency: 'INR'}}</p>
+                        </li>
+                        <li><span>Shipping</span>
+                            <p>{{order?.shippingAmount | currency: 'INR'}}</p>
+                        </li>
+                        <li>
+                            <span>Payment method</span>
+                            <p *ngIf="order?.paymentMethod === 1">Paypal</p>
+                            <p *ngIf="order?.paymentMethod === 2">Stripe</p>
+                            <p *ngIf="order?.paymentMethod === 3">COD</p>
+                        </li>
+                        <li><span>Tax</span>
+                            <p>{{order?.taxableAmount}}</p>
+                        </li>
+                        <li><span class="total">Total</span>
+                            <p class="total-count">{{order?.totalAmount| currency: 'INR'}}</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="custom-right">
+                    <h3>Billing Address</h3>
+                    <ul>
+                        <li><span>{{billingAddress?.firstName}} {{billingAddress?.lastName}}</span></li>
+                        <li><a href="">{{billingAddress?.address}}</a></li>
+                        <li><a href="">
+                                <figure>
+                                    <img src="assets/images/calling.png" alt="">
+                                    <caption>{{billingAddress?.countryCode+ "-"+billingAddress?.phoneNumber}}</caption>
+                                </figure>
+                            </a></li>
+                        <li><a href="">
+                                <figure>
+                                    <img src="assets/images/mszbox.png" alt="">
+                                    <caption>{{billingAddress?.email}}</caption>
+                                </figure>
+                            </a></li>
+
+                    </ul>
+                    <h3>Shipping Address</h3>
+                    <ul>
+                        <li><span>{{shippingAddress?.firstName}} {{shippingAddress?.lastName}}</span></li>
+                        <li><a href="">{{shippingAddress?.address}}</a></li>
+                        <li><a href="">
+                                <figure>
+                                    <img src="assets/images/calling.png" alt="">
+                                    <caption>{{shippingAddress?.countryCode+ "-"+shippingAddress?.phoneNumber}}</caption>
+                                </figure>
+                            </a>
+                        </li>
+                        <li><a href="">
+                                <figure>
+                                    <img src="assets/images/mszbox.png" alt="">
+                                    <caption>{{shippingAddress?.email}}</caption>
+                                </figure>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            
+            <hr>
+            <div class="main-detail">
+                <div class="custom-left">
+                    <h3>Payment Details</h3>
+                    <ul>
+                        <li>
+                            <span>Payment Status</span>
+                            <p>
+                                <span *ngIf="order?.paymentStatus==1">Pending</span>
+                                <span *ngIf="order?.paymentStatus==2">Processing</span>
+                                <span *ngIf="order?.paymentStatus==3">Completed</span>
+                                <span *ngIf="order?.paymentStatus==4">Failed</span>
+                            </p>
+                        </li>
+                        <li>
+                            <span>Total Amount</span>
+                            <p> {{order?.totalAmount|currency:'INR'}} </p>
+                        </li>
+                        <li>
+                            <span>Payment Method</span>
+                            <p *ngIf="order?.paymentMethod === 1">Paypal</p>
+                            <p *ngIf="order?.paymentMethod === 2">Stripe</p>
+                            <p *ngIf="order?.paymentMethod === 3">IOS In App</p>
+                            <p *ngIf="order?.paymentMethod === 4">Android In App</p>
+                            <p *ngIf="order?.paymentMethod === '3'">COD</p>
+                        </li>
+                        <li *ngIf="order?.paymentIntentId">
+                            <span>Payment Id</span>
+                            <p style="width: 100%;">
+                                <i class="txt-info"> {{order?.paymentIntentId}} </i>
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+

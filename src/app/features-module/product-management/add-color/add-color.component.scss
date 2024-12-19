@@ -1,0 +1,123 @@
+.add-color {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .heading-two {
+        background: #737373;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 {
+            margin: 0px;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 23px;
+            text-transform: capitalize;
+            color: #FFFFFF;
+
+        }
+    }
+
+    //  ======heading with background sec
+    .head-sec {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h3 {
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 23px;
+            margin: 0px;
+            color: #000000;
+        }
+
+        span {
+            font-size: 22px;
+            color: #000000;
+            cursor: pointer;
+        }
+    }
+
+    //  ======heading with background sec
+
+    // ======form section
+    form {
+        padding: 2rem !important;
+
+        .input-detail {
+            label {
+                display: inline-block;
+                padding: 10px 0px;
+                margin: 0px;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 16px;
+                color: #262626;
+            }
+
+            .input-form {
+                background: #F4F4F4;
+                box-shadow: inset 0px 5px 13px rgb(0 0 0 / 5%);
+                border-radius: 5px;
+                border: none;
+                max-width: 362px;
+                width: 100%;
+                padding: 14px 0px 14px 14px;
+
+                &:focus-visible {
+                    outline: none;
+                }
+            }
+        }
+
+        .buttons-popup {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            width: calc(100% - 26px);
+            margin-top: 20px;
+
+            .cancel {
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 19px;
+                letter-spacing: 0.01em;
+                border: none;
+                background-color: unset;
+                color: #FF4A4A;
+            }
+
+            .save-btn {
+                max-width: 149px;
+                width: 100%;
+                padding: 12px;
+                background: grey;
+                box-shadow: inset 0px 5px 13px rgb(0 0 0 / 5%);
+                border-radius: 5px;
+                border: none;
+                color: #FFFFFF;
+                font-size: 16px;
+                font-weight: 600;
+            }
+        }
+
+    }
+
+}
+
+::ng-deep .sketch-picker{
+ width: 90% !important;
+}
+
+::ng-deep color-sketch{
+    display: grid !important;
+    place-items: center !important;
+}
+::ng-deep .mat-mdc-form-field{
+width: 94%;
+margin-left: 14px;
+}

@@ -1,0 +1,12 @@
+<div id="confirm-dialog" class="dialog">
+    @if(data?.message){
+        <p>{{data.message}}</p>
+    }@else {
+        <p >Are you sure you want to logout?</p>
+    }
+    <div class="right">
+        <button id="confirm-ok-button" (click)="close(true)" autofocus>Ok</button>
+        &nbsp;
+        <button id="confirm-cancel-button" (click)="close(false)">Cancel</button>
+    </div>
+</div>

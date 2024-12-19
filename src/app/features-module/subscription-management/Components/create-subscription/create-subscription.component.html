@@ -1,0 +1,75 @@
+<form [formGroup]="CreatePlanform" class="add-form">
+  <mat-card>
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>PlanTitle</mat-label>
+        <input formControlName="planTitle" matInput />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Price</mat-label>
+        <input type="number" formControlName="price" matInput />
+      </mat-form-field>
+      @if(CreatePlanform.value.planType == "2") {
+      <mat-form-field>
+        <mat-label>Discount</mat-label>
+        <input type="number" formControlName="discount" matInput />
+      </mat-form-field>
+      } @if(CreatePlanform.value.planType == "2"){
+      <mat-form-field>
+        <mat-label>Members</mat-label>
+        <input
+          type="number"
+          formControlName="members"
+          matInput
+          [readonly]="CreatePlanform.value.planType == 1"
+        />
+      </mat-form-field>
+      }
+
+      <mat-form-field>
+        <mat-label>Validity</mat-label>
+        <input type="number" formControlName="validity" matInput />
+      </mat-form-field>
+      <div>
+        <mat-radio-group formControlName="planType">
+          <mat-radio-button color="primary" value="1"
+            >Individual Plan</mat-radio-button
+          >
+          <mat-radio-button color="accent" value="2"
+            >Team Plan</mat-radio-button
+          >
+        </mat-radio-group>
+      </div>
+      <div class="gap">
+        <mat-selection-list>
+          <ng-container *ngFor="let feature of featuresList">
+            <mat-checkbox
+              class="color-field"
+              (change)="onCheckboxChange(feature, $event.checked)"
+              [checked]="isFeatureSelected(feature)"
+            >
+              {{ feature }}
+            </mat-checkbox>
+          </ng-container>
+        </mat-selection-list>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="data.key == 'edit' ? editCreatePlan() : submitCreatePlan()"
+      >
+        {{ data.key == "edit" ? "update" : "Save" }}
+      </button>
+      <button
+        mat-raised-button
+        type="submit"
+        color="accent"
+        (click)="closeDialogbox()"
+      >
+        Close
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

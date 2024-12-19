@@ -1,0 +1,30 @@
+<div class="content-box-start">
+    <!-- ========Step Link Part======= -->
+    <div class="stepLink">
+        <h2>Select Listing Type</h2>
+        <form class="formGroup">
+            <!-- <p>
+                <input type="radio" id="test1" name="radio-group" [checked]="selectedVariant === 1"
+                    (change)="selectVariant(1)" [disabled]="checkBoxDisabled">
+                <label for="test1">Simple</label>
+            </p> -->
+            <p>
+                <input type="radio" id="test2" name="radio-group" [checked]="selectedVariant === 2"
+                    (change)="selectVariant(2)" [disabled]="checkBoxDisabled">
+                <label for="test2">Variant</label>
+            </p>
+        </form>
+        <h3 class="stepTitle">Steps </h3>
+        <ul class="allStepLinks">
+            <li *ngFor="let menu of navigationMenu; let i= index">
+                <!-- {{menu | json }} -->
+                <a [class.activeLink]="menu.isActive" (click)="navigate(menu, i)" style="cursor:pointer;"
+                    *ngIf="showMenu(i)"> {{menu.title}} </a>
+            </li>
+        </ul>
+    </div>
+    <!-- ========Step Link Part======= -->
+    <div class="rightPart">
+        <router-outlet></router-outlet>
+    </div>
+</div>

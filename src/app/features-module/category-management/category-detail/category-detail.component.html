@@ -1,0 +1,246 @@
+<!-- =======category detail======= -->
+<div class="page-loader" *ngIf="isLoading">
+    <div class="loaderCustom"></div>
+</div>
+
+<div class="detail-category" *ngIf="!isLoading">
+    <div class="breadcrumb-arrow">
+        <ul class="breadcrumb-items">
+            <li>
+                <button type="button" mat-button (click)="onCategoriesClick()">
+                    Categories
+                    <mat-icon color="accent">arrow_forward_ios</mat-icon>
+                </button>
+            </li>
+            <li *ngFor="let crumb of breadCrumb; let i = index">
+                <button type="button" mat-button [color]="categoryId===crumb._id?'primary':''"
+                    (click)="onBreadCrumbClick(crumb._id)">
+                    {{crumb?.name | titlecase}}
+                    <mat-icon *ngIf="breadCrumb.length - 1 !== i" color="accent">arrow_forward_ios</mat-icon>
+                </button>
+            </li>
+
+        </ul>
+    </div>
+    <!-- {{category | json}} -->
+    <div class="details">
+        <figure class="prod-img"><img src="{{category?.image}}" alt=""></figure>
+        <div class="prod-info">
+            <div class="infoWrapper">
+                <div class="info">
+                    <h5>Category Name</h5>
+                    <span>
+                        {{category?.name | titlecase}}
+                    </span> 
+                </div>
+                <div class="info">
+                    <h5>Product Sold</h5>
+                    <span> {{category?.productSold?category?.productSold: 'NA'}} </span>
+                </div>
+                <div class="info-btn">
+                    <button *ngIf="isAddActive && category?.isAttributeAdded" class="submit-btn" (click)="addReturnPolicy('Add','',category._id)">Add return policy</button>
+                    <!-- <button *ngIf="isEditActive && category?.isAttributeAdded" class="submit-btn" (click)="addReturnPolicy('Edit',returnPolicy,category._id)">Edit return policy</button> -->
+                </div>
+            </div>
+            <div class="info">
+                <div class="buttons-category">
+                    <!-- <button class="submit-btn" *ngIf="!category?.isAttributeAdded && childCategories?.length === 0"
+                        (click)="addCategory()">
+                        Add category
+                    </button> -->
+                    <button class="submit-btn"
+                        *ngIf="!category?.isAttributeAdded && category?.childCategories?.length === 0"
+                        (click)="addAttributes()">
+                        Add Attribute
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <ng-container *ngIf="category?.childCategories.length">
+        <mat-toolbar class="mat-elevation-z2 toolbar-table-header">
+            <mat-toolbar-row style="width: 100%; justify-content:space-between">
+                <div class="navigation-info">
+                    <button mat-flat-button>
+                        Child Categories
+                    </button>
+                </div>
+                <div style="display: flex;justify-content: center">
+                   
+                    <div>
+
+                    </div>
+                    <div class="buttons-table-header">
+                        <button mat-mini-fab color="accent" (click)="addCategory()">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <div class="mat-elevation-z2 table-responsive" style="position: relative">
+            <div>
+                <table mat-table [dataSource]="childCategories" matSortDirection="desc">
+                    <ng-container matColumnDef="No">
+                        <th mat-header-cell *matHeaderCellDef>Sl.No.</th>
+                        <td mat-cell *matCellDef="let Category; let i = index">
+                            {{ i + 1 }}.
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Thumbnail Image">
+                        <th mat-header-cell *matHeaderCellDef>Thumbnail Image</th>
+                        <td mat-cell *matCellDef="let Category">
+                            <div class="category-image" *ngIf="Category?.image">
+                                <img src="{{baseUrl+ Category.image }}" alt="image" />
+                            </div>
+                            <div class="category-image" *ngIf="!Category?.image">
+                                <img src="assets/images/person.png" alt="image" />
+                            </div>
+                        </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef>
+                            Name
+                        </th>
+                        <td mat-cell *matCellDef="let Category">{{ Category.name }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Status" class="format-column">
+                        <th mat-header-cell *matHeaderCellDef>Status</th>
+                        <td mat-cell *matCellDef="let user">
+                            <mat-slide-toggle color="primary" (click)="changeStatus(user._id)"
+                                [checked]="user ? user.isActive : 'false'"></mat-slide-toggle>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Action">
+                        <th mat-header-cell *matHeaderCellDef>
+                            <span style="margin-left: 20px;">
+                                Action
+                            </span>
+                        </th>
+                        <td mat-cell *matCellDef="let row">
+                            <button style="margin-left:3px;" (click)="editCategory(row)" mat-icon-button color="accent">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button (click)="categoryDetails(row._id)" class="txt-info">
+                                <mat-icon>remove_red_eye</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="columnToDisplay"></tr>
+                    <tr mat-row *matRowDef="let row; columns: columnToDisplay; let i = index" class="data-row"></tr>
+                </table>
+            </div>
+        </div>
+    </ng-container> -->
+
+
+    <ng-container *ngIf="category?.isAttributeAdded">
+        <mat-toolbar class="mat-elevation-z2 toolbar-table-header">
+            <mat-toolbar-row style="width: 100%; justify-content:space-between">
+                <div class="navigation-info">
+                    <button mat-flat-button>
+                        Attributes
+                    </button>
+                </div>
+                <div style="display: flex;justify-content: center">
+                    <div>
+
+                    </div>
+                    <div class="buttons-table-header">
+                        <button mat-mini-fab color="accent" (click)="addAttributes()">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <div class="mat-elevation-z2 table-responsive" style="position: relative">
+            <div>
+                <table mat-table [dataSource]="attributes">
+                    
+                    <ng-container matColumnDef="No">
+                        <th mat-header-cell *matHeaderCellDef>Sl.No.</th>
+                        <td mat-cell *matCellDef="let Category; let i = index">
+                            {{ i + 1 }}.
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef>
+                            Name
+                        </th>
+                        <td mat-cell *matCellDef="let Category">{{ Category.name }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="attributeType">
+                        <th mat-header-cell *matHeaderCellDef>
+                            Attribute Type
+                        </th>
+                        <td mat-cell *matCellDef="let Category">
+                            {{Category?.attributeType===1? 'COLOR': 'GENERAL'}}
+                        </td>
+                    </ng-container>
+                    <!-- <ng-container matColumnDef="useForVariants">
+                        <th mat-header-cell *matHeaderCellDef>
+                            Use For Variants
+                        </th>
+                        <td mat-cell *matCellDef="let Category">
+                            <mat-icon color="primary" *ngIf="Category?.useForVariants">
+                                check_circle
+                            </mat-icon>
+                            <mat-icon color="warn" *ngIf="!Category?.useForVariants">
+                                cancel
+                            </mat-icon>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="addAccess">
+                        <th mat-header-cell *matHeaderCellDef>
+                            Add Access
+                        </th>
+                        <td mat-cell *matCellDef="let Category">
+                            <mat-icon color="primary" *ngIf="Category?.addAccess">
+                                check_circle
+                            </mat-icon>
+                            <mat-icon color="warn" *ngIf="!Category?.addAccess">
+                                cancel
+                            </mat-icon>
+                        </td>
+                    </ng-container> -->
+
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef>
+                            <span style="margin-left: 20px;">
+                                Action
+                            </span>
+                        </th>
+                        <td mat-cell *matCellDef="let row">
+                            <button style="margin-left:3px;" (click)="editAttribute(row)" mat-icon-button
+                                color="accent">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button (click)="attributeDetails(row._id)" class="txt-info">
+                                <mat-icon>remove_red_eye</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="attrColumnToDisplay"></tr>
+                    <tr mat-row *matRowDef="let row; columns: attrColumnToDisplay; let i = index" class="data-row"></tr>
+                </table>
+            </div>
+        </div>
+        <br>
+        <!-- <app-report-listing [categoryId]="categoryId" [categoryName]="category?.name"></app-report-listing> -->
+
+        <br>
+        <!-- <app-return-reason-listing [categoryId]="categoryId" [categoryName]="category?.name"></app-return-reason-listing> -->
+    </ng-container>
+</div>
+
+
+
+<!-- =======category detail======= -->

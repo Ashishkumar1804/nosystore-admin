@@ -1,0 +1,276 @@
+<div class="tabs-container">
+  <mat-tab-group (selectedTabChange)="selectSubscriptionType($event)">
+    <mat-tab label="Active User">
+      <div class="mid-bar-item" style="width: 46rem">
+        <app-search
+          [searchPlaceholder]="'Search by Name'"
+          (onSearch)="onSearch($event, 'all')"
+        ></app-search>
+      </div>
+
+      <div class="loader" *ngIf="isLoading">
+        <!-- <mat-spinner [strokeWidth]="5" color="accent"></mat-spinner>
+          -->
+          <div class="loaderCustom"></div>
+      </div>
+
+      <mat-card class="plan-card">
+        <!-- <mat-card-header>
+            <mat-card-title>
+              Subscription history
+            </mat-card-title>
+          </mat-card-header> -->
+        <mat-card-content>
+          <table
+            matSort
+            mat-table
+            [dataSource]="datasource"
+            class="mat-elevation-z8"
+          >
+            <ng-container matColumnDef="S.No." class="format-column">
+              <th mat-header-cell *matHeaderCellDef>No.</th>
+              <td mat-cell *matCellDef="let user; let i = index">
+                {{ (pageAll - 1) * limitAll + (i + 1) }}.
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef>Name</th>
+              <td mat-cell *matCellDef="let element">{{ element.name ? element.name : '-' }}</td>
+            </ng-container>
+            <ng-container matColumnDef="gender">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef>Gender</th>
+              <td mat-cell *matCellDef="let element">{{ element.gender }}</td>
+            </ng-container>
+            <ng-container matColumnDef="age">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef>Age</th>
+              <td mat-cell *matCellDef="let element">{{ element.age }}</td>
+            </ng-container>
+            <ng-container matColumnDef="phoneNumber">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef>Phone Number</th>
+              <td mat-cell *matCellDef="let element">{{ element.countryCode }} - {{ element.phoneNumber }}</td>
+            </ng-container>
+            <ng-container matColumnDef="address">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef>Address</th>
+              <td mat-cell *matCellDef="let element">{{element?.address?.address}} {{element?.address?.address?',':'-'}} {{ element?.address?.city }} {{ element?.address?.state }}</td>
+            </ng-container>
+           
+            
+            <!-- <ng-container matColumnDef="isAccountActive">
+              <th mat-header-cell *matHeaderCellDef>Account Status</th>
+              <td mat-cell *matCellDef="let element">
+                <span
+                  class="wrap-cell"
+                  [ngClass]="
+                    element.isAccountActive == true
+                      ? 'active-class'
+                      : 'inactive-class'
+                  "
+                  >{{
+                    element.isAccountActive ? "Active" : "InActive"
+                  }}</span
+                >
+              </td>
+            </ng-container> -->
+            <ng-container matColumnDef="isAccountActive">
+              <th mat-header-cell *matHeaderCellDef>Account Status</th>
+              <td mat-cell *matCellDef="let element">
+                <section class="example-section">
+                  <mat-slide-toggle
+                    class="example-margin"
+                    [color]="color"
+                    [checked]="element.isAccountActive"
+                    [disabled]="disabled"
+                    (change)="toggleStatus(element._id, 'all')"
+                  >
+                  </mat-slide-toggle>
+                </section>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="isProfileCompleted">
+              <th mat-header-cell *matHeaderCellDef>Profile Status</th>
+              <td mat-cell *matCellDef="let element" style="padding: 0;"> 
+                <span
+                  class="wrap-cell"
+                  [ngClass]="
+                    element.isProfileCompleted == true
+                      ? 'active-class'
+                      : 'inactive-class'
+                  "
+                  >{{
+                    element.isProfileCompleted ? "Active" : "InActive"
+                  }}</span
+                >
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="createdAt">
+              <th mat-header-cell *matHeaderCellDef>CreatedAt</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.createdAt | date : "dd/MM/yyyy" }}
+              </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef>Action</th>
+              <td mat-cell *matCellDef="let element">
+                <mat-icon
+                  color="primary"
+                  (click)="redireToUserOrder(element._id, deletedType)"
+                  >visibility</mat-icon
+                >
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColums"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColums"></tr>
+          </table>
+        </mat-card-content>
+        <br />
+        <mat-card-footer>
+          <mat-paginator
+            [length]="totalItems"
+            [pageSize]="limit"
+            [pageSizeOptions]="[5, 10, 20, 50, 100]"
+            (page)="onPaginateChange($event, 'all')"
+          ></mat-paginator>
+        </mat-card-footer>
+      </mat-card>
+    </mat-tab>
+
+    <!-- Deleted user -->
+    <mat-tab label="Deleted User">
+      <div class="mid-bar-item" style="width: 46rem">
+        <app-search
+          [searchPlaceholder]="'Search by Name'"
+          (onSearch)="onSearch($event, 'all')"
+        ></app-search>
+      </div>
+
+      <div class="loader" *ngIf="isLoading">
+        <!-- <mat-spinner [strokeWidth]="5" color="accent"></mat-spinner>
+          -->
+          <div class="loaderCustom"></div>
+      </div>
+
+      <mat-card class="plan-card">
+        <!-- <mat-card-header>
+            <mat-card-title>
+              Subscription history
+            </mat-card-title>
+          </mat-card-header> -->
+        <mat-card-content>
+          <table
+            matSort
+            mat-table
+            [dataSource]="datasourceForDeleted"
+            class="mat-elevation-z8"
+          >
+            <ng-container matColumnDef="S.No." class="format-column">
+              <th mat-header-cell *matHeaderCellDef>No.</th>
+              <td mat-cell *matCellDef="let user; let i = index">
+                {{ (pageAll - 1) * limitAll + (i + 1) }}.
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef>Name</th>
+              <td mat-cell *matCellDef="let element">{{ element.name ? element.name : '-' }}</td>
+            </ng-container>
+            <ng-container matColumnDef="gender">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef>Gender</th>
+              <td mat-cell *matCellDef="let element">{{ element.gender }}</td>
+            </ng-container>
+            <ng-container matColumnDef="age">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef>Age</th>
+              <td mat-cell *matCellDef="let element">{{ element.age }}</td>
+            </ng-container>
+            <ng-container matColumnDef="phoneNumber">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef>Phone Number</th>
+              <td mat-cell *matCellDef="let element">{{ element.countryCode }} - {{ element.phoneNumber }}</td>
+            </ng-container>
+            <ng-container matColumnDef="address">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef>Address</th>
+              <td mat-cell *matCellDef="let element">{{element?.address?.address}} {{element?.address?.address?',':'-'}} {{ element?.address?.city }} {{ element?.address?.state }}</td>
+            </ng-container>
+           
+            
+            <!-- <ng-container matColumnDef="isAccountActive">
+              <th mat-header-cell *matHeaderCellDef>Account Status</th>
+              <td mat-cell *matCellDef="let element">
+                <span
+                  class="wrap-cell"
+                  [ngClass]="
+                    element.isAccountActive == true
+                      ? 'active-class'
+                      : 'inactive-class'
+                  "
+                  >{{
+                    element.isAccountActive ? "Active" : "InActive"
+                  }}</span
+                >
+              </td>
+            </ng-container> -->
+            <ng-container matColumnDef="isAccountActive">
+              <th mat-header-cell *matHeaderCellDef>Account Status</th>
+              <td mat-cell *matCellDef="let element">
+                <section class="example-section">
+                  <mat-slide-toggle
+                    class="example-margin"
+                    [color]="color"
+                    [checked]="element.isAccountActive"
+                    [disabled]="disabled"
+                    (change)="toggleStatus(element._id, 'all')"
+                  >
+                  </mat-slide-toggle>
+                </section>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="isProfileCompleted">
+              <th mat-header-cell *matHeaderCellDef>Profile Status</th>
+              <td mat-cell *matCellDef="let element" style="padding: 0;"> 
+                <span
+                  class="wrap-cell"
+                  [ngClass]="
+                    element.isProfileCompleted == true
+                      ? 'active-class'
+                      : 'inactive-class'
+                  "
+                  >{{
+                    element.isProfileCompleted ? "Active" : "InActive"
+                  }}</span
+                >
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="createdAt">
+              <th mat-header-cell *matHeaderCellDef>CreatedAt</th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.createdAt | date : "dd/MM/yyyy" }}
+              </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef>Action</th>
+              <td mat-cell *matCellDef="let element">
+                <mat-icon
+                  color="primary"
+                  (click)="redireToUserOrder(element._id, deletedType)"
+                  >visibility</mat-icon
+                >
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColums"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColums"></tr>
+          </table>
+        </mat-card-content>
+        <br />
+        <mat-card-footer>
+          <mat-paginator
+            [length]="totalItems"
+            [pageSize]="limit"
+            [pageSizeOptions]="[5, 10, 20, 50, 100]"
+            (page)="onPaginateChange($event, 'all')"
+          ></mat-paginator>
+        </mat-card-footer>
+      </mat-card>
+    </mat-tab>
+  </mat-tab-group>
+</div>

@@ -1,0 +1,79 @@
+.menu-item {
+  padding: 20px;
+  transition: 0.3 ease-in-out;
+  margin: 10px 0;
+}
+.vertical-nav-Menu {
+  padding: 13px 0;
+}
+
+.isText {
+  color: var(--secondaryColor);
+}
+
+.menu-item a {
+  color: rgb(54, 65, 82);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+}
+.menu-item:hover {
+  background: var(--primaryColor);
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.menu-item.active {
+  background: #3f51b5;
+  // background: var(--primaryColor);
+  border-radius: 30px;
+  cursor: pointer;
+
+  .bi,
+  span {
+    color: var(--secondaryColor);
+  }
+}
+
+.active {
+  background: var(--primaryColor);
+}
+
+.menu-item:hover a {
+  color: var(--clr-primary-white);
+}
+
+.accordion-button:hover {
+  background: var(--primaryColor);
+  border-radius: 5px;
+}
+
+.toogleBtn {
+  background: none;
+  border: none;
+  max-width: 70px;
+}
+
+// accordian
+.menu-item .accordion {
+  width: 100%;
+}
+.accordion-button {
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+}
+.accordion-item {
+  border: none;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+// accordian

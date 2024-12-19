@@ -1,0 +1,27 @@
+<!-- <div class="page-loader" *ngIf="isLoading">
+    <mat-spinner [strokeWidth]="5" color="accent"></mat-spinner>
+</div> -->
+<div class="return-policy">
+    <!-- <div class="return-policy" *ngIf="!isLoading"> -->
+    <h2 class="title">
+        Cancellation & Return Policy
+    </h2>
+    <form class="formGroup">
+
+        <p *ngFor="let radiobutton of radioItems">
+            <input type="radio" id="{{radiobutton.name}}" name="radio-group"
+                (click)="onItemChange(radiobutton.policyType)"
+                [class.active]="selectedPolicyType === radiobutton.policyType"
+                [checked]="selectedPolicyType === radiobutton.policyType">
+            <label for="{{radiobutton.name}}">{{radiobutton.name}}</label>
+        </p>
+
+    </form>
+    <div class="buttons">
+        <button *ngIf="!isSubmitting" class="next-btn" (click)="submit()">Next</button>
+        <button class="next-btn btn-loader" *ngIf="isSubmitting">
+            Submitting
+            <mat-spinner [diameter]="25" color="accent"> </mat-spinner>
+        </button>
+    </div>
+</div>

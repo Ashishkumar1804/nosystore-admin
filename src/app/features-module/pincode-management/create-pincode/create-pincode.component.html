@@ -1,0 +1,80 @@
+<form [formGroup]="pincodeForm" (ngSubmit)="onSubmit()">
+    <div class="pincode-container">
+      <mat-card class="pincode-photo-card">        
+        <mat-card-content>
+          <mat-form-field>
+            <mat-label>Pincode</mat-label>
+            <input formControlName="pincode" matInput (input)="onPincodeChange('')" />
+
+            <mat-error *ngIf="pincodeForm.get('pincode')?.hasError('required')">
+              Pincode is required.
+            </mat-error>
+            <mat-error *ngIf="pincodeForm.get('pincode')?.hasError('pattern')">
+              Pincode must be a 6-digit number.
+            </mat-error>
+          </mat-form-field>
+
+           <!-- Loader displayed below pincode input -->
+        <div *ngIf="isLoading" class="loader-container">
+          <mat-spinner diameter="20"></mat-spinner>
+        </div>
+        <!-- Direct display of suggestions -->
+        <div *ngIf="filteredSuggestions.length > 0" class="suggestions-container">
+          <!-- Select All Checkbox -->
+          <mat-checkbox
+            [checked]="allSelected"
+            [indeterminate]="!allSelected && (pincodeForm.get('cities')?.value.length > 0)"
+            (change)="toggleAllSelection()"
+            class="select-all"
+          >
+            Select All
+          </mat-checkbox>
+        
+          <!-- Individual Suggestions -->
+          <div class="suggestion-item" *ngFor="let suggestion of filteredSuggestions">
+            <mat-checkbox
+              [checked]="pincodeForm.get('cities')?.value.includes(suggestion.Name)"
+              (change)="toggleSuggestion(suggestion.Name)"
+            >
+              {{ suggestion.Name }}
+            </mat-checkbox>            
+          </div>
+          <button (click)="addCity()" class="addbtn">Add city</button>
+        </div>
+
+        </mat-card-content>
+
+        <mat-card-content>
+            <mat-form-field>
+              <mat-label>Country</mat-label>
+              <input formControlName="country" matInput  value="India" [readonly]=true/>
+              <mat-error *ngIf="pincodeForm.get('country')?.hasError('required')">
+                Country is required.
+              </mat-error>
+            </mat-form-field>
+        </mat-card-content>
+
+        <mat-card-content>
+          <mat-form-field>
+            <mat-label>State</mat-label>
+            <input formControlName="state" matInput  value="India" [readonly]=true/>
+            <mat-error *ngIf="pincodeForm.get('state')?.hasError('required')">
+              State is required.
+            </mat-error>
+          </mat-form-field>
+      </mat-card-content>
+
+        <!-- <mat-form-field>
+          <mat-label>State</mat-label>
+          <input formControlName="state" matInput />
+          <mat-error *ngIf="pincodeForm.get('state')?.hasError('required')">
+            State is required.
+          </mat-error>
+        </mat-form-field> -->
+
+        <mat-card-actions class="actions">
+          <button mat-raised-button class="custom-button">Save</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+</form>

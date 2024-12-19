@@ -1,0 +1,74 @@
+<form [formGroup]="brandForm" (ngSubmit)="onSubmit()">
+    <div class="brand-container">
+      <mat-card class="brand-photo-card">        
+        <mat-card-content>
+            <mat-form-field>
+              <mat-label>Name</mat-label>
+              <input formControlName="name" matInput  value="{{brand?.name}}"/>
+              <mat-error *ngIf="brandForm.get('name')?.hasError('required')">
+                Name is required.
+              </mat-error>
+            </mat-form-field>
+        </mat-card-content>
+  
+        <mat-card-content>
+          <mat-form-field>
+            <mat-label>Category</mat-label>
+            <!-- <mat-select formControlName="parentId" (selectionChange)="onSelectBrand($event)">
+              <mat-option value="" hidden>Select Brand</mat-option>
+              <mat-option *ngFor="let category of categories" [value]="category._id">{{ category.name }}</mat-option>
+            </mat-select> -->
+  
+            <!-- {{allSelected | json }} -->
+  
+            <!-- <mat-select formControlName="categoryId" #select multiple>
+              <div class="select-all">
+                  <mat-checkbox [(ngModel)]="allSelected" [ngModelOptions]="{standalone: true}"
+                                  (change)="toggleAllSelection()">Select All
+                  </mat-checkbox>
+              </div>
+              <mat-option (click)="optionClick()" *ngFor="let category of categories" [value]="category._id">
+                {{ category.name }}
+              </mat-option>
+            </mat-select> -->
+            <mat-select formControlName="categoryId" #selectRef multiple >
+              <!-- "Select All" Checkbox -->
+              <!-- <mat-option> -->
+                <mat-checkbox [(ngModel)]="allSelected" [ngModelOptions]="{standalone: true}" (change)="toggleAllSelection()" class="select-all">
+                  Select All
+                </mat-checkbox>
+              <!-- </mat-option> -->
+              <!-- Individual Options -->
+              <mat-option (click)="optionClick()" *ngFor="let category of categories" [value]="category._id">
+                {{ category.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="brandForm.get('categoryId')?.hasError('required')">
+                category is required.
+              </mat-error>
+          </mat-form-field> 
+      </mat-card-content>
+  
+        <mat-card-content>
+            <div class="brand-photo-container">
+              <div class="brand-photo">
+                <img
+                  [src]="brandImageUrl"
+                />
+                <input 
+                  type="file"
+                  formControlName="image"
+                  (change)="onFileSelected($event)"
+                  #fileInput                 
+                />
+              </div>
+            </div>
+          </mat-card-content>
+  
+        <mat-card-actions class="actions">
+          <button mat-raised-button class="custom-button">Save</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </form>
+  

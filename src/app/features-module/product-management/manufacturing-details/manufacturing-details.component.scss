@@ -1,0 +1,114 @@
+// =======manufacturing details
+.manufacturing-details {
+    h2 {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 23px;
+        color: #000000;
+    }
+
+    // =======form section
+    form {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+
+
+
+        .input-detail {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 20px 0px;
+
+            label {
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 16px;
+                color: #262626;
+                width: 200px;
+                text-align: right;
+            }
+
+            .error-input {
+                max-width: 362px;
+                width: calc(100% - 200px);
+
+                select {
+                    max-width: 362px;
+                    width: 100%;
+                    padding: 15px;
+                    background-color: #F4F4F4;
+                    box-shadow: inset 0px 5px 13px rgb(0 0 0 / 5%);
+                    border-radius: 5px;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 16px;
+                    color: #6D6D6D;
+                    border: none;
+                    appearance: none;
+                    background-image: url("../../../../assets/images/dropdownimg.png");
+                    background-repeat: no-repeat;
+                    background-position: right 1.75rem center;
+                    background-size: 12px 8px;
+
+                    &:focus-visible {
+                        box-shadow: none;
+                        outline: none;
+                    }
+
+                }
+
+                .input-form {
+                    background: #F4F4F4;
+                    box-shadow: inset 0px 5px 13px rgb(0 0 0 / 5%);
+                    border-radius: 5px;
+                    border: none;
+                    max-width: 362px;
+                    width: 100%;
+                    padding: 14px;
+
+                    &:focus-visible {
+                        outline: none;
+                    }
+                }
+            }
+        }
+
+        .button-next {
+            display: flex;
+            justify-content: flex-end;
+            width: 99%;
+
+            .next-btn {
+                max-width: 178px;
+                width: 100%;
+                padding: 12px;
+                background: grey;
+                box-shadow: inset 0px 5px 13px rgb(0 0 0 / 5%);
+                border-radius: 5px;
+                border: none;
+                color: #FFFFFF;
+                font-size: 16px;
+                font-weight: 600;
+                margin: 20px 0;
+            }
+        }
+
+    }
+
+    // =======form section
+}
+
+// =======manufacturing details
+
+.txt-danger {
+    color: #d9534f;
+    font-size: 12px;
+  }
+  .error-input input.ng-invalid.ng-touched,
+  .error-input select.ng-invalid.ng-touched,
+  .error-input quill-editor.ng-invalid.ng-touched {
+    border: 1px solid #d9534f;
+  }

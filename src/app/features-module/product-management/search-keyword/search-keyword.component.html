@@ -1,0 +1,58 @@
+<!-- ======search Keyword====== -->
+<div class="search-keyword">
+    <h2>Search keywords</h2>
+    <!-- ======form section===== -->
+    <form [formGroup]="searchForm">
+        <div formArrayName="searchKeywords">
+            <ng-container *ngFor="let key of searchKeywordArr.controls; let index = index">
+                <div class="input-detail">
+                    <label [style.visibility]="index===0?'visible':'hidden'">Search Keyword <span><img
+                                src="assets/images/questionIcon.png" matTooltipClass="my-tooltip"
+                                matTooltip="Are the words that describe your topic of research."></span> </label>
+                    <div class="error-input">
+                        <input class="input-form" type="text" placeholder="Enter keyword" formControlName="{{index}}">
+                        <!-- <small class="txt-danger"
+                            *ngIf="searchKeywordArr.controls[index].touched && !searchKeywordArr?.value[index]">Search
+                            keyword is Required</small> -->
+                    </div>
+                    <div style="display: flex;" [class.rowReverse]="searchKeywordArr.length > index">
+                        <button class="add-minus-btn add-btn" (click)="addField('')"
+                            [style.visibility]="searchKeywordArr.length-1 === index?'visible':'hidden'"><span>+</span></button>
+                        <button class="add-minus-btn add-btn" (click)="removeAt(index)"
+                            *ngIf="searchKeywordArr.length > index"><span>-</span></button>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <!-- <div class="input-detail">
+            <label></label>
+            <div class="error-input">
+                <input class="input-form" type="text" placeholder="Enter Keyword">
+                <small class="txt-danger">Text is Required</small>
+            </div>
+            <button class="add-plus-btn add-btn"><span>+</span></button>
+        </div> -->
+        <div class="input-detail">
+            <!-- <label>Video URL*<span><img src="assets/images/questionIcon.png" matTooltipClass="my-tooltip"
+                        matTooltip="Is the address of a given unique resource on the web."></span> </label> -->
+            <!-- <div class="error-input">
+                <input class="input-form" type="text" placeholder="Enter Video URL" formControlName="videoUrl"> -->
+                <!-- <small class="txt-danger"
+                    *ngIf="searchForm.controls['videoUrl'].touched && !searchForm?.value?.videoUrl">Video url is
+                    Required</small> -->
+            <!-- </div> -->
+            <span class="empty"></span>
+            <span class="empty"></span>
+        </div>
+        <div class="button-next">
+            <button class="next-btn" (click)="save()" *ngIf="!isLoading">Next</button>
+            <button class="next-btn btn-loader" *ngIf="isLoading">
+                Submitting
+                <mat-spinner [diameter]="25" color="accent"> </mat-spinner>
+            </button>
+        </div>
+
+    </form>
+    <!-- ======form section===== -->
+</div>
+<!-- ======search Keyword====== -->

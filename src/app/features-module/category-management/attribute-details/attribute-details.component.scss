@@ -1,0 +1,90 @@
+::ng-deep .mat-dialog-container {
+    padding: 0px !important;
+}
+
+
+
+// ======.attribute-detail========
+.attribute-detail {
+    .heading-two {
+        background: #737373;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 {
+            margin: 0px;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 23px;
+            text-transform: capitalize;
+            color: #FFFFFF;
+
+        }
+    }
+
+
+    .item-details {
+        margin: 20px;
+
+        li {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            position: relative;
+
+            span {
+                width: 200px;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 12px;
+                color: #000000;
+            }
+
+            p {
+                width: calc(100% - 200px);
+                margin: 0px;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 12px;
+                color: #4D4E50;
+            }
+
+            &::before {
+                position: absolute;
+                content: "";
+                top: 13px;
+                width: 5px;
+                height: 5px;
+                background: #000;
+                border-radius: 50%;
+                bottom: 0;
+                margin: 0 auto;
+                left: -15px;
+            }
+        }
+    }
+}
+
+.description {
+    background: rgba(31, 134, 187, 0.13);
+    border-radius: 6px;
+    padding: 20px 10px;
+    margin: 37px;
+
+    h4 {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 12px;
+        color: #1F86BB;
+    }
+}
+
+p {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #4D4E50;
+    margin: 0px;
+}

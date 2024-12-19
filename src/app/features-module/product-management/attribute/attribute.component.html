@@ -1,0 +1,101 @@
+<!-- <div class="page-loader" *ngIf="isLoading">
+    <mat-spinner [strokeWidth]="5" color="accent"></mat-spinner>
+  </div> -->
+  <!-- ======specification section -->
+  <div class="specification">
+    <!-- <div class="specification" *ngIf="!isLoading"> -->
+    <h2>Product Information</h2>
+    <!-- {{attributesArr.controls | json}} -->
+    <div class="new">
+      <div class="select-button">
+        <!-- =======form section -->
+        <form [formGroup]="attributeForm">
+          <div formArrayName="attributes">
+            <ng-container
+              *ngFor="let attr of attributesArr.controls; let index = index"
+            >
+              <div formGroupName="{{ index }}">
+                <div class="input-detail">
+                  <label>
+                    {{ attributes[index].name | titlecase }}*
+                    <span>
+                      <img
+                        src="assets/images/questionIcon.png"
+                        matTooltipClass="my-tooltip"
+                        matTooltip="{{
+                          attributes[index].description || 'Select a value'
+                        }}"
+                      />
+                    </span>
+                  </label>
+                  <div class="error-input">
+                    <select
+                      *ngIf="attributes[index].attributeType === 3"
+                      formControlName="valueId"
+                    >
+                      <option [value]="null">
+                        Select {{ attributes[index].name }}
+                      </option>
+                      <option
+                        *ngFor="let value of attributes[index].values"
+                        [value]="value._id"
+                      >
+                        {{ value.name }}
+                      </option>
+                    </select>
+                    <select
+                      *ngIf="attributes[index].attributeType === 1"
+                      formControlName="valueId"
+                    >
+                      <option [value]="null">
+                        Select {{ attributes[index].name }}
+                      </option>
+                      <option *ngFor="let value of colors" [value]="value._id">
+                        {{ value.name }}
+                      </option>
+                    </select>
+                    <small
+                      class="txt-danger"
+                      *ngIf="
+                        submitted &&
+                        getControlsFromArr(index).controls['valueId'].errors
+                      "
+                    >
+                      <!-- {{
+                        getControlsFromArr(index).controls["valueId"].errors
+                          | validate : attributes[index].name
+                          | titlecase
+                      }} -->
+                    </small>
+                    <!-- getControlsFromArr(index).controls['valueId'].touched && -->
+                  </div>
+                  <button class="add-new-btn" *ngIf="attributes[index].attributeType==1"
+                        (click)="addAttributeValues(attributes[index])">
+                        <span>+</span>
+                    </button>
+                  <!-- <button
+                    class="add-new-btn"
+                    *ngIf="attributes[index].addAccess"
+                    (click)="addAttributeValues(attributes[index])"
+                  > -->
+                    <!-- <span>+</span>
+                  </button>
+                  <span class="empty" *ngIf="!attributes[index].addAccess"></span> -->
+                </div>
+              </div>
+            </ng-container>
+          </div>
+          <div class="buttons">
+            <button class="next-btn" (click)="submit()">Next</button>
+            <button class="next-btn btn-loader" *ngIf="isSubmitting">
+              Submitting
+              <mat-spinner [diameter]="25" color="accent"> </mat-spinner>
+            </button>
+          </div>
+        </form>
+        <!-- =======form section -->
+      </div>
+    </div>
+  </div>
+  <!-- ======specification section -->
+  

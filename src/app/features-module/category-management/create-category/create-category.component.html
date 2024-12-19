@@ -1,0 +1,39 @@
+<form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+    <div class="category-container">
+      <mat-card class="category-photo-card">        
+        <mat-card-content>
+            <mat-form-field>
+              <mat-label>Name</mat-label>
+              <input formControlName="name" matInput />
+              <mat-error *ngIf="categoryForm.get('name')?.hasError('required') && categoryForm.get('name')?.touched">
+                Category name is required.
+              </mat-error>
+            </mat-form-field>
+        </mat-card-content>
+
+        
+        <mat-card-content>
+            <div class="category-photo-container">
+              <div class="category-photo">
+                <img
+                  [src]="categoryImageUrl"
+                />
+                <input 
+                  type="file"
+                  (change)="onFileSelected($event)"
+                  #fileInput                 
+                />
+
+                <mat-error *ngIf="categoryForm.get('image')?.hasError('required') && categoryForm.get('image')?.touched">
+                  Category image is required.
+                </mat-error>
+              </div>
+            </div>
+          </mat-card-content>
+
+        <mat-card-actions class="actions">
+          <button mat-raised-button class="custom-button">Save</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+</form>

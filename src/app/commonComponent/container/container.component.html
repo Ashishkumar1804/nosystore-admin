@@ -1,0 +1,52 @@
+<!-- <app-header (dataEvent)="receiveData($event)"></app-header> -->
+
+<div
+  class="pageLayout"
+  [ngClass]="{ 'half-show-sidebar isText': isHalfShown }"
+  (onClick)="getValue()"
+>
+  <!-- sidebar -->
+  <aside class="sidebar">
+    <div bg-light></div>
+    <app-sidebar [toggle]="toggle"></app-sidebar>
+  </aside>
+
+  <!-- main wrapper -->
+  <section class="right-section">
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <div class="admin-profile" *ngIf="profileDetailsData">
+          <img
+            [src]="profileDetailsData ? profileDetailsData : defaultUser"
+            alt=""
+          />
+        </div>
+        <span class="flex-spacer"></span>
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="menu"
+          class="toolbar-actions"
+        >
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item [routerLink]="['/profile']">
+            <mat-icon>account_circle</mat-icon>
+            Profile
+          </button>
+          <button mat-menu-item [routerLink]="['/change-password']">
+            <mat-icon>settings</mat-icon>
+            Change Password
+          </button>
+          <button mat-menu-item [routerLink]="['/samsung-wallet']">
+            <mat-icon inline="true">flag</mat-icon>
+            samsung
+          </button>
+        </mat-menu>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <section class="main">
+      <router-outlet></router-outlet>
+    </section>
+  </section>
+</div>

@@ -1,0 +1,174 @@
+// ======step link part 
+
+::ng-deep .mat-dialog-container {
+    padding: 0% !important;
+    border-radius: 1rem !important;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.content-box-start {
+    display: flex;
+    justify-content: flex-start;
+
+    .stepLink {
+        width: 270px;
+        border-right: 1px solid #D9D9D9;
+        margin: 0 30px;
+    }
+
+    .rightPart {
+        width: calc(100% - 270px);
+        margin-left: 10px;
+        min-height: calc(100vh - 120px);
+    }
+
+
+    // ========Step Link Part========
+    .formGroup {
+        display: flex;
+        justify-content: flex-start;
+        gap: 20px;
+
+
+        [type="radio"]:checked,
+        [type="radio"]:not(:checked) {
+            position: absolute;
+            left: -9999px;
+        }
+
+        [type="radio"]:checked+label,
+        [type="radio"]:not(:checked)+label {
+            position: relative;
+            padding-left: 28px;
+            cursor: pointer;
+            line-height: 20px;
+            display: inline-block;
+            color: #666;
+        }
+
+        [type="radio"]:checked+label:before,
+        [type="radio"]:not(:checked)+label:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 18px;
+            height: 18px;
+            border: 1px solid #D9D9D9;
+            border-radius: 100%;
+            background: #fff;
+        }
+
+        [type="radio"]:checked+label:before {
+            background-color: #1F86BB;
+        }
+
+        [type="radio"]:checked+label:after,
+        [type="radio"]:not(:checked)+label:after {
+            content: "";
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            border-radius: 100%;
+            transition: all 0.2s ease;
+        }
+
+        [type="radio"]:not(:checked)+label:after {
+            opacity: 0;
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
+
+        [type="radio"]:checked+label:after {
+            opacity: 1;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+    }
+
+    .stepTitle {
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 21px;
+        text-transform: capitalize;
+        color: #A3A3A3;
+    }
+
+    .allStepLinks {
+        list-style-type: none;
+        padding: 0 0 0 20px;
+
+        li {
+            padding: 7px 0px;
+
+
+
+            a {
+                font-weight: 500;
+                font-size: 15px;
+                line-height: 18px;
+                color: grey;
+                text-decoration: none;
+                display: block;
+                transition: all .3s;
+                position: relative;
+
+
+                &::after {
+                    background: url("../../../../assets/images/arrowStep.png") no-repeat center;
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    left: -32px;
+                    transform: translateY(-50%);
+                    width: 14px;
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: all .3s;
+                    height: 12px;
+                }
+
+                &:hover {
+                    color: #1F86BB;
+                }
+
+                &:hover::after {
+                    left: -21px;
+                    opacity: 1;
+                    visibility: visible;
+                }
+
+                &.activeLink {
+                    color: #1F86BB;
+
+                    &::after {
+                        left: -21px;
+                        opacity: 1;
+                        visibility: visible;
+
+                    }
+                }
+
+            }
+        }
+
+    }
+
+
+}
+
+// ======step link part 
+
+
+// ========media queery=========
+// @media (max-width:1300px) {
+//     .step-link {
+//         width: 30%;
+//     }
+// }

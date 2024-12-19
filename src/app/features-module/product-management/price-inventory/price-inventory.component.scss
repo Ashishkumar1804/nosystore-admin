@@ -1,0 +1,91 @@
+// ======price inventory
+.price-inventory {
+    h2 {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 23px;
+        color: #000000;
+    }
+
+    // =======form section
+    form {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+
+        .input-detail {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+
+            .error-input {
+                display: flex;
+                flex-direction: column;
+                width: calc(100% - 200px);
+                margin: 10px 0;
+
+                .input-form {
+                    background: #F4F4F4;
+                    box-shadow: inset 0px 5px 13px rgb(0 0 0 / 5%);
+                    border-radius: 5px;
+                    border: none;
+                    max-width: 362px;
+                    padding: 14px;
+
+                    &:focus-visible {
+                        outline: none;
+                    }
+                }
+
+                .text-danger {
+                    text-align: left;
+                }
+            }
+
+            label {
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 16px;
+                color: #262626;
+                width: 200px;
+                text-align: right;
+            }
+        }
+
+        .button-next {
+            width: 99%;
+            display: flex;
+            justify-content: flex-end;
+
+            .next-btn {
+                max-width: 178px;
+                width: 100%;
+                padding: 12px;
+                background: grey;
+                box-shadow: inset 0px 5px 13px rgb(0 0 0 / 5%);
+                border-radius: 5px;
+                border: none;
+                color: #FFFFFF;
+                font-size: 16px;
+                font-weight: 600;
+                margin: 20px 0;
+            }
+        }
+
+    }
+
+    // ======form section
+}
+
+// =======price inventory
+
+.txt-danger {
+    color: #d9534f;
+    font-size: 12px;
+  }
+  .error-input input.ng-invalid.ng-touched,
+  .error-input select.ng-invalid.ng-touched,
+  .error-input quill-editor.ng-invalid.ng-touched {
+    border: 1px solid #d9534f;
+  }

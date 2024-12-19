@@ -1,0 +1,76 @@
+<form [formGroup]="addOnForm" (ngSubmit)="onSubmit()">
+    <div class="brand-container">
+      <mat-card class="brand-photo-card">        
+     
+        <mat-form-field>
+          <mat-label>Product</mat-label>
+          <mat-select formControlName="productId" #selectRef multiple>
+            <mat-checkbox
+              [(ngModel)]="allSelected"
+              [ngModelOptions]="{ standalone: true }"
+              (change)="toggleAllSelection()"
+              class="select-all"
+            >
+              Select All
+            </mat-checkbox>
+            <mat-option
+              (click)="optionClick()"
+              *ngFor="let category of categories"
+              [value]="category._id"
+            >
+              {{ category.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field>
+          <mat-label>Warranty</mat-label>
+          <mat-select formControlName="warrantyId" #selectRef1 multiple>
+            <mat-checkbox
+              [(ngModel)]="allSelectedForWarranty"
+              [ngModelOptions]="{ standalone: true }"
+              (change)="toggleAllSelectionForWarranty()"
+              class="select-all"
+            >
+              Select All
+            </mat-checkbox>
+            <mat-option
+              (click)="optionClickForWarranty()"
+              *ngFor="let warranty of warranties"
+              [value]="warranty._id"
+            >
+              {{ warranty.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Tech Spec</mat-label>
+          <mat-select formControlName="techSpecId" #selectRef2 multiple>
+            <mat-checkbox
+              [(ngModel)]="allSelectedForTechSpec"
+              [ngModelOptions]="{ standalone: true }"
+              (change)="toggleAllSelectionForTechSpec()"
+              class="select-all"
+            >
+              Select All
+            </mat-checkbox>
+            <mat-option
+              (click)="optionClickForTechSpec()"
+              *ngFor="let techSpec of techSpecs"
+              [value]="techSpec._id"
+            >
+              {{ techSpec.title }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+              
+  
+        <mat-card-actions class="actions">
+          <button mat-raised-button class="custom-button">Save</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </form>
+  

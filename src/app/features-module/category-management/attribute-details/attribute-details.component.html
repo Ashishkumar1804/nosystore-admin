@@ -1,0 +1,84 @@
+<!-- ========Attribute Details========= -->
+<!-- {{attribute|json}} -->
+<div class="attribute-detail">
+    <div class="heading-two">
+        <h2>Attributes Details</h2>
+        <button mat-icon-button (click)="closeDialog()">
+            <mat-icon color="warn">cancel</mat-icon>
+        </button>
+    </div>
+    <ul class="item-details">
+        <li>
+            <span>Category Name</span>
+            <p>
+                {{categoryData?.name}}
+            </p>
+        </li>
+        <li>
+            <span>Attribute Name</span>
+            <p>
+                {{attribute?.name}}
+            </p>
+        </li>
+        <li>
+            <span>Attribute Type</span>
+            <p>
+                {{attribute?.attributeType?'COLOR': 'GENERAL'}}
+            </p>
+        </li>
+
+        <!-- <li>
+            <span>Properties Exists</span>
+            <p>
+                <mat-icon color="primary" *ngIf="attribute?.isProperties">
+                    check_circle
+                </mat-icon>
+                <mat-icon color="warn" *ngIf="!attribute?.isProperties">
+                    cancel
+                </mat-icon>
+            </p>
+        </li> -->
+        <li *ngIf="attribute?.isProperties">
+            <span>Properties</span>
+            <p>
+                <span *ngFor="let p of attribute?.properties">
+                    {{p.name}},
+                </span>
+            </p>
+        </li>
+        <!-- <li>
+            <span>Add Access</span>
+            <p>
+                <mat-icon color="primary" *ngIf="attribute?.addAccess">
+                    check_circle
+                </mat-icon>
+                <mat-icon color="warn" *ngIf="!attribute?.addAccess">
+                    cancel
+                </mat-icon>
+            </p>
+        </li>
+        <li>
+            <span>Use for Variants</span>
+            <p>
+                <mat-icon color="primary" *ngIf="attribute?.useForVariants">
+                    check_circle
+                </mat-icon>
+                <mat-icon color="warn" *ngIf="!attribute?.useForVariants">
+                    cancel
+                </mat-icon>
+            </p>
+        </li> -->
+    </ul>
+    <div class="description">
+        <h4>
+            Description
+        </h4>
+        <p>
+            {{attribute?.description}}
+        </p>
+    </div>
+
+    <ng-container *ngIf="!isLoading && attribute.attributeType!=1" >
+        <app-attribute-values [attributeId]="attributeId"></app-attribute-values>
+    </ng-container>
+</div>

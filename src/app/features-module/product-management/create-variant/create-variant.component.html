@@ -1,0 +1,56 @@
+<!-- ========variant details======== -->
+
+
+<div class="variant-details" >
+    <!-- ======box details====== -->
+    <div class="variant">
+        <h2>Variant Details</h2>
+        <div class="detail-box">
+            <div class="box" *ngFor="let pv of productVarients let pvi = index">
+                <ul class="shadow-box">
+                    <ng-container *ngFor="let att of pv?.attributes">
+                        <li class="box-items" *ngIf="att?.attribute?.useForVariants">
+                            <!-- <button (click)="editVariant(att)"> Edit Variant</button> -->
+                            <span>{{att?.attribute?.name}}</span>
+                            <p>{{att?.value?.name}}
+                                <span *ngIf="att?.property">, {{att?.property?.name }}</span>
+                            </p>
+                        </li>
+                    </ng-container>
+                </ul>
+            </div>
+            <!--  <div class="box">
+                <ul class="shadow-box">
+                    <li class="box-items">
+                        <span>Size</span>
+                        <p>M, Regular</p>
+                    </li>
+                    <li class="box-items">
+                        <span>Color</span>
+                        <p>Yellow</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="box">
+                <ul class="shadow-box">
+                    <li class="box-items">
+                        <span>Size</span>
+                        <p>M, Regular</p>
+                    </li>
+                    <li class="box-items">
+                        <span>Color</span>
+                        <p>Yellow</p>
+                    </li>
+                </ul>
+            </div> -->
+            <div class="box button-variant">
+                <button class="add-new-variant" (click)="createNewVariant()" ><span>+</span>Add New
+                    Variant</button>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+<!-- ========variant details======== -->

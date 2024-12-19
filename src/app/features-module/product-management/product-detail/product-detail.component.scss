@@ -1,0 +1,210 @@
+.product-detail{padding: 1rem;}
+.detail-mid-part{margin-top: 5rem}
+.custom-card{width: 314px;flex: 0 0 314px;border: 1px solid #ccc;}
+.topRow figure, .topRow button{
+    width: 72px;height: 67px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    color: #1f87c0;
+}
+.topRow figure img{
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+.custom-rowCommon{
+    display: flex;
+    justify-content: space-between;
+    line-height: 4rem;
+    border-bottom: 1px solid #ccc;
+}
+.custom-rowCommon:last-child{border-bottom: unset;}
+
+.custom-row{display: flex;gap: 2rem;}
+.custom-card{
+    min-width: 314px;
+    background: #FFFFFF;
+    box-shadow: 0 10px 24px #0000001a;
+    border-radius: 5px;
+    padding: 15px;
+
+}
+.topRow figure{
+    border: 1px solid #ccc;
+}
+.topRow{display: flex;gap: 1rem;}
+/* Detail Upper Part */
+.detail-upper-part {
+    display: flex;
+    gap: 25px;
+  
+    /* Left Image Part */
+    .left-img-part {
+      .big-img {
+        width: 302px !important;
+        height: 302px !important;
+        display: inline-block;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+        }
+      }
+  
+      .thumbnail-row {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+  
+        .thumbnail {
+          width: 72px;
+          height: 72px;
+          cursor: pointer;
+          border: 2px solid transparent;
+          border-radius: 5px;
+  
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+          }
+  
+          &.selected {
+            border-color: #38b54a;
+          }
+        }
+      }
+    }
+  
+    /* Right Text Part */
+    .right-text-part {
+      .rating-section {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+  
+        .star-rating {
+          display: flex;
+          gap: 2px;
+  
+          .star {
+            font-size: 1.2rem;
+            color: #ffcc00;
+  
+            &.full::before {
+              content: "★";
+            }
+            &.half::before {
+              content: "⯪";
+            }
+            &.empty::before {
+              content: "☆";
+            }
+          }
+        }
+      }
+  
+      .price-section {
+        margin-top: 15px;
+  
+        h2 {
+          font-size: 24px;
+          font-weight: bold;
+          margin: 0;
+  
+          span {
+            font-size: 16px;
+            color: #888;
+            text-decoration: line-through;
+            margin-left: 5px;
+          }
+        }
+      }
+    }
+  }  
+
+  /* Outer Container - Main Partitions */
+.outer-container {
+    display: flex;
+    justify-content: space-between; /* Left and Right main partitions */
+    gap: 16px; /* Spacing between main partitions */
+    border: 1px solid #e0e0e0; /* Outer border for the container */
+    padding: 16px;
+    background-color: #f9f9f9; /* Optional background for container */
+  }
+  
+  /* Main Partitions */
+  .partition-left,
+  .partition-right {
+    flex: 1; /* Take equal space for main partitions */
+    max-width: 48%; /* Limit width of each main partition */
+    border: 1px solid #dcdcdc; /* Border around each main partition */
+    border-radius: 4px; /* Rounded corners for partitions */
+    padding: 16px;
+    background-color: #ffffff; /* Background color for partitions */
+  }
+  
+  /* Inner Container - Sub-Partitons */
+  .inner-container {
+    display: flex;
+    justify-content: space-between; /* Sub-partitions within each main partition */
+    align-items: center; /* Align items vertically */
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f0; /* Optional: Divider line between rows */
+  }
+  
+  /* Inner Left and Right Sub-Partitions */
+  .inner-left {
+    flex: 1; /* Takes half the space on the left */
+    text-align: left;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .inner-right {
+    flex: 1; /* Takes half the space on the right */
+    text-align: right;
+    color: #555;
+  }
+  
+  /* Additional Styling for Text */
+  .label {
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+  }
+  
+  .value {
+    color: #555;
+    font-size: 14px;
+  }
+  
+  .custom-card .button-group {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  
+  .custom-card button {
+    font-size: 14px;
+    padding: 6px 12px;
+    text-transform: capitalize;
+  } 
+
+  button{
+    border-radius: 10px;
+    height: 50px !important;
+    width: 92px !important;
+    border: 1px solid grey!important;
+  }
+
+  .description{
+    padding: 20px !important;
+  }
+  #product-description{
+    padding:20px !important;
+  }

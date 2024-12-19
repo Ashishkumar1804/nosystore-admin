@@ -1,0 +1,133 @@
+<!-- =======manufacturing details -->
+<div class="manufacturing-details">
+    <h2>Manufacturing Details</h2>
+    <!-- ======form section -->
+    <form [formGroup]="manufactureForm">
+      <div class="input-detail">
+        <label
+          >Manufacturer Details*<span
+            ><img
+              src="assets/images/questionIcon.png"
+              matTooltipClass="my-tooltip"
+              matTooltip=" Company that produces goods for sale from raw materials and sells them to customers, wholesalers or distributors"
+          /></span>
+        </label>
+        <div class="error-input">
+          <input
+            class="input-form"
+            (input)="onInputName($event, 'manufactureDetail')"
+            formControlName="manufactureDetail"
+            type="text"
+            placeholder="Enter Manufacturer Details"
+          />
+          <small *ngIf="submitted && manufactureForm.controls['manufactureDetail'].errors" class="txt-danger">
+            <ng-container *ngIf="manufactureForm.controls['manufactureDetail'].hasError('required')">
+              Manufacturer details are required.
+            </ng-container>
+            <ng-container *ngIf="manufactureForm.controls['manufactureDetail'].hasError('minlength')">
+              Manufacturer details must be at least 2 characters.
+            </ng-container>
+            <ng-container *ngIf="manufactureForm.controls['manufactureDetail'].hasError('maxlength')">
+              Manufacturer details cannot exceed 200 characters.
+            </ng-container>
+          </small>
+        </div>
+      </div>
+      <div class="input-detail">
+        <label
+          >Importer Details*<span
+            ><img
+              src="assets/images/questionIcon.png"
+              matTooltipClass="my-tooltip"
+              matTooltip=" Is a country, company, or person that buys goods from another country for use in their own country."
+          /></span>
+        </label>
+        <div class="error-input">
+          <input
+            class="input-form"
+            (input)="onInputName($event, 'importerDetail')"
+            formControlName="importerDetail"
+            type="text"
+            placeholder="Enter Importer Details"
+          />
+          <small *ngIf="submitted && manufactureForm.controls['importerDetail'].errors" class="txt-danger">
+            <ng-container *ngIf="manufactureForm.controls['importerDetail'].hasError('required')">
+              Importer details are required.
+            </ng-container>
+            <ng-container *ngIf="manufactureForm.controls['importerDetail'].hasError('minlength')">
+              Importer details must be at least 2 characters.
+            </ng-container>
+            <ng-container *ngIf="manufactureForm.controls['importerDetail'].hasError('maxlength')">
+              Importer details cannot exceed 200 characters.
+            </ng-container>
+          </small>
+        </div>
+      </div>
+      <div class="input-detail">
+        <label
+          >Packer Details*<span
+            ><img
+              src="assets/images/questionIcon.png"
+              matTooltipClass="my-tooltip"
+              matTooltip=" Are individuals who prepare finished products for packaging and shipment."
+          /></span>
+        </label>
+        <div class="error-input">
+          <input
+            class="input-form"
+            type="text"
+            (input)="onInputName($event, 'packerDetail')"
+            formControlName="packerDetail"
+            placeholder="Enter Packer Details"
+          />
+          <small *ngIf="submitted && manufactureForm.controls['packerDetail'].errors" class="txt-danger">
+            <ng-container *ngIf="manufactureForm.controls['packerDetail'].hasError('required')">
+              Packer details are required.
+            </ng-container>
+            <ng-container *ngIf="manufactureForm.controls['packerDetail'].hasError('minlength')">
+              Packer details must be at least 2 characters.
+            </ng-container>
+            <ng-container *ngIf="manufactureForm.controls['packerDetail'].hasError('maxlength')">
+              Packer details cannot exceed 200 characters.
+            </ng-container>
+          </small>
+        </div>
+      </div>
+      <div class="input-detail">
+        <label
+          >Country of Origin*<span
+            ><img
+              src="assets/images/questionIcon.png"
+              matTooltipClass="my-tooltip"
+              matTooltip=" The country where product or goods come from."
+          /></span>
+        </label>
+        <div class="error-input">
+          <select formControlName="country">
+            <option value="" hidden>Select Country of Origin</option>
+            <option value="India">India</option>
+            <!-- <option value="USA">USA</option> -->
+          </select>
+          <small *ngIf="submitted && manufactureForm.controls['country'].errors" class="txt-danger">
+            Country of origin is required.
+          </small>
+        </div>
+      </div>
+      <div class="button-next" *ngIf="!submit">
+        <button (click)="save()" class="next-btn">Next</button>
+      </div>
+      <div class="button-next" *ngIf="submit">
+        <button class="next-btn" style="display: flex" disabled>
+          Loading
+          <mat-spinner
+            [strokeWidth]="2"
+            [diameter]="20"
+            color="accent"
+          ></mat-spinner>
+        </button>
+      </div>
+    </form>
+    <!-- ======form section -->
+  </div>
+  <!-- =======manufacturing details -->
+  

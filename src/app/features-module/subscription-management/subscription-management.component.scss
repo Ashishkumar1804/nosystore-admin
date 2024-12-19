@@ -1,0 +1,44 @@
+.tabs-container {
+  margin: 20px;
+}
+
+.plan-card {
+  margin-top: 20px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.custom-button {
+  background-color: black;
+  color: white;
+}
+
+.custom-button:hover {
+  background-color: #333;
+}
+
+::ng-deep .mat-mdc-card-header {
+  justify-content: flex-end;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.example-margin {
+  margin: 10px;
+}
+
+::ng-deep .mat-icon {
+  font-size: 24px;
+  margin: 3px;
+  cursor: pointer;
+  text-align: center;
+}
